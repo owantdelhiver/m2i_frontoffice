@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String name;
     private float price;
     private String short_description;
@@ -18,27 +18,6 @@ public class Product {
     @JoinColumn(name = "id_category")
     private ProductCategory category;
 
-    public Product(long id, String name, float price, String short_description, String description, int stock, String picture_url, ProductCategory category) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.short_description = short_description;
-        this.description = description;
-        this.stock = stock;
-        this.picture_url = picture_url;
-        this.category = category;
-    }
-
-    public Product(String name, float price, String short_description, String description, int stock, String picture_url, ProductCategory category) {
-        this.name = name;
-        this.price = price;
-        this.short_description = short_description;
-        this.description = description;
-        this.stock = stock;
-        this.picture_url = picture_url;
-        this.category = category;
-    }
-
     public Product() {
     }
 
@@ -46,7 +25,7 @@ public class Product {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
