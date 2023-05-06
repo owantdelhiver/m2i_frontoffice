@@ -1,10 +1,5 @@
 package com.groupe4.frontoffice.model.order;
-
-import com.groupe4.frontoffice.model.product.Product;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class OrderLine {
@@ -13,18 +8,39 @@ public class OrderLine {
     private int id;
     private int quantity;
 
-    public OrderLine(int id, Product product, int quantity) {
+    @ManyToOne
+    @JoinColumn(name="id_order")
+    private Order order;
+
+    public OrderLine(int id, int quantity) {
         this.id = id;
         this.quantity = quantity;
     }
     public OrderLine() {
 
     }
+
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

@@ -19,19 +19,21 @@ public class OrderController {
     @Autowired
     OrderLineService orderLineService;
 
-  @RequestMapping(value="/orders")
-    public List<Order> findAll(){
-      return orderService.FindAllOrders();
-  }
-    @RequestMapping(value="/{id}")
-    public Optional<Order> findbyId(Long id){
-        return orderService.FindOrderById(id);}
-
-    public void save(Order order){
-      orderService.saveOrder(order);
+    @RequestMapping(value = "/orders")
+    public List<Order> findAll() {
+        return orderService.FindAllOrders();
     }
 
-    public void delete(Order order){
+    @RequestMapping(value = "/{id}")
+    public Optional<Order> findbyId(Long id) {
+        return orderService.FindOrderById(id);
+    }
+
+    public void save(Order order) {
+        orderService.saveOrder(order);
+    }
+
+    public void delete(Order order) {
         orderService.deleteOrder(order);
     }
 

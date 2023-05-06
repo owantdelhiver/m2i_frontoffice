@@ -1,9 +1,7 @@
 package com.groupe4.frontoffice.model.order;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -14,8 +12,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Date date;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private OrderStatus orderStatus;
 
+    @OneToMany(mappedBy="order")
+    private List<OrderLine> orderLineList;
 
     public Order(int id, Date date, OrderStatus orderStatus, List<OrderLine> orderLines) {
         this.id = id;
@@ -31,20 +34,37 @@ public class Order {
     }
 
     public Order() {
-
     }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Date getDate() {
         return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
+    public List<OrderLine> getOrderLineList() {
+        return orderLineList;
+    }
+
+    public void setOrderLineList(List<OrderLine> orderLineList) {
+        this.orderLineList = orderLineList;
+    }
 }
