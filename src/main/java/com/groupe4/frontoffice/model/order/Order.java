@@ -1,11 +1,14 @@
 package com.groupe4.frontoffice.model.order;
 
+import com.groupe4.frontoffice.model.cart.Cart;
+import com.groupe4.frontoffice.model.user.User;
 import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name="orders")
 public class Order {
 
     @Id
@@ -20,10 +23,15 @@ public class Order {
     @OneToMany(mappedBy="order")
     private List<OrderLine> orderLineList;
 
-    public Order(int id, Date date, OrderStatus orderStatus, List<OrderLine> orderLines) {
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
+
+    public Order(int id, Date date, OrderStatus orderStatus, List<OrderLine> orderLines, User user) {
         this.id = id;
         this.date = date;
         this.orderStatus = orderStatus;
+        this.user = user;
 
     }
 
@@ -66,5 +74,13 @@ public class Order {
 
     public void setOrderLineList(List<OrderLine> orderLineList) {
         this.orderLineList = orderLineList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
