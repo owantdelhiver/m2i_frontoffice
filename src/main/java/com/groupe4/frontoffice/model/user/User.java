@@ -1,8 +1,12 @@
 package com.groupe4.frontoffice.model.user;
 
 import com.groupe4.frontoffice.model.cart.Cart;
+import com.groupe4.frontoffice.model.cart.CartLine;
+import com.groupe4.frontoffice.model.order.Order;
 import com.groupe4.frontoffice.model.product.ProductCategory;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class User {
@@ -14,7 +18,7 @@ public class User {
     private String email;
     private String password;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_adress")
     private Adress adress;
 
@@ -22,16 +26,20 @@ public class User {
     @JoinColumn(name = "id_cart")
     private Cart cart;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
     public User() {
     }
 
-    public User(String lastname, String firstname, String email, String password, Adress adress, Cart cart) {
+    public User(String lastname, String firstname, String email, String password, Adress adress, Cart cart , List<Order> orders) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.email = email;
         this.password = password;
         this.adress = adress;
         this.cart = cart;
+        this.orders = orders;
     }
 
     public int getId() {
@@ -87,5 +95,13 @@ public class User {
     }
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
