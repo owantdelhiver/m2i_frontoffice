@@ -1,15 +1,17 @@
 package com.groupe4.frontoffice.model.cart;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @OneToMany(mappedBy = "cart")
+    private List<CartLine> cartlines;
 
     public Cart() {
     }
@@ -20,6 +22,14 @@ public class Cart {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<CartLine> getCartlines() {
+        return cartlines;
+    }
+
+    public void setCartlines(List<CartLine> cartlines) {
+        this.cartlines = cartlines;
     }
 }
 
