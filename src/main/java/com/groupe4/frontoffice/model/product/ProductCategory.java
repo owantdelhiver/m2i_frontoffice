@@ -12,6 +12,9 @@ public class ProductCategory {
     private String name;
 
     public ProductCategory(){}
+    public ProductCategory(String name){
+        this.name = name;
+    }
 
     public int getId() {
         return id;
