@@ -20,6 +20,15 @@ public class Adress {
     public Adress() {
     }
 
+    public Adress(String street, int number, int zipcode, String city, String country, String extraInfo) {
+        this.street = street;
+        this.number = number;
+        this.zipcode = zipcode;
+        this.city = city;
+        this.country = country;
+        this.extraInfo = extraInfo;
+    }
+
     public int getId() {
         return id;
     }
