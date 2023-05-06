@@ -1,5 +1,6 @@
 package com.groupe4.frontoffice.model.user;
 
+import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.product.ProductCategory;
 import jakarta.persistence.*;
 
@@ -13,11 +14,24 @@ public class User {
     private String email;
     private String password;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_adress")
     private Adress adress;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_cart")
+    private Cart cart;
+
     public User() {
+    }
+
+    public User(String lastname, String firstname, String email, String password, Adress adress, Cart cart) {
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.email = email;
+        this.password = password;
+        this.adress = adress;
+        this.cart = cart;
     }
 
     public int getId() {
@@ -66,5 +80,12 @@ public class User {
 
     public void setAdress(Adress adress) {
         this.adress = adress;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }
