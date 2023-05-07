@@ -1,5 +1,6 @@
 package com.groupe4.frontoffice.model.user;
 
+import com.groupe4.frontoffice.dto.UserDto;
 import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.model.order.Order;
@@ -40,6 +41,16 @@ public class User {
         this.adress = adress;
         this.cart = cart;
         this.orders = orders;
+    }
+
+    public UserDto toDto(){
+        UserDto dto = new UserDto();
+        dto.setId(this.getId());
+        dto.setFirstname(this.getFirstname());
+        dto.setLastname(this.getLastname());
+        dto.setEmail(this.getEmail());
+        dto.setPassword(this.getPassword());
+        return dto;
     }
 
     public int getId() {
