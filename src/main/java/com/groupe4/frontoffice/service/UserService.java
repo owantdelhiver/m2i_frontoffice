@@ -1,8 +1,7 @@
 package com.groupe4.frontoffice.service;
 
-import com.groupe4.frontoffice.model.product.Product;
+import com.groupe4.frontoffice.dto.UserDto;
 import com.groupe4.frontoffice.model.user.User;
-import com.groupe4.frontoffice.repository.product.ProductRepository;
 import com.groupe4.frontoffice.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,4 +15,6 @@ public class UserService {
     public List<User> fetchAll(){
         return userRepository.findAll();
     }
+
+    public void save(User user){userRepository.save(user);}
 }
