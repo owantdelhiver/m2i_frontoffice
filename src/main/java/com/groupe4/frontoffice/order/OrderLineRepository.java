@@ -1,4 +1,4 @@
-package com.groupe4.frontoffice.repository;
+package com.groupe4.frontoffice.order;
 
 import com.groupe4.frontoffice.model.order.OrderLine;
 import org.springframework.data.jpa.repository.JpaRepository;
