@@ -9,8 +9,10 @@ public class CartLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
+    @JoinColumn(name = "id_cart")
     private Cart cart;
     @ManyToOne
+    @JoinColumn(name = "id_product")
     private Product product;
     private int quantity;
 
