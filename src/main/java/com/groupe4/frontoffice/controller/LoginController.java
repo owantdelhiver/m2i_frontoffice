@@ -23,20 +23,4 @@ public class LoginController {
     public String login() {
         return "login";
     }
-
-//    @PostMapping("/login")
-//    public String processLogin(@RequestParam("email") String email,
-//                               @RequestParam("password") String password,
-//                               RedirectAttributes redirectAttributes) {
-//
-//        Optional<User> userOptional = userRepository.findByEmail(email);
-//        if (userOptional.isPresent()) {
-//            User user = userOptional.get();
-//            if (user.getPassword().equals(password)) {
-//                return "redirect:/";
-//            }
-//        }
-//        redirectAttributes.addFlashAttribute("error", "Invalid email or password");
-//        return "redirect:/login";
-//    }
 }
