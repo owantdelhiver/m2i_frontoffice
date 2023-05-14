@@ -15,9 +15,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    public static final String[] ENDPOINTS_WHITELIST = {
-            "/css/**",
-            "/images/**"
+    public static final String[] ENDPOINTS_BlACKLIST = {
+            "/auth/**",
     };
 
     @Bean
@@ -39,26 +38,18 @@ public class WebSecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws  Exception {
-        return http
-                .authorizeHttpRequests(requests -> {
-                    requests
-                            .requestMatchers(ENDPOINTS_WHITELIST).permitAll()
-                            .requestMatchers("/").permitAll()
-                            .anyRequest().authenticated();
-                })
-                .formLogin(form -> {
-                    form
-                            .loginPage("/login")
-                            .usernameParameter("email")
-                            .passwordParameter("password")
-                            .permitAll()
-                            .defaultSuccessUrl("/auth/test");
-                })
-                .logout(logout -> {
-                    logout
-                            .logoutUrl("/logout")
-                            .logoutSuccessUrl("/");
-                })
-                .build();
+        http.authorizeHttpRequests()
+                .requestMatchers(ENDPOINTS_BlACKLIST).authenticated()
+                .anyRequest().permitAll();
+        http.formLogin()
+                .loginPage("/login")
+                .usernameParameter("email")
+                .passwordParameter("password");
+        http.logout()
+                .permitAll()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/");
+
+        return http.build();
     }
 }
