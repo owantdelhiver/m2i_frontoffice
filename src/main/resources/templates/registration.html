@@ -7,12 +7,12 @@
 
 </head>
 <body>
-<div class="container my-3">
+<div class="container text-center">
     <div class="row">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8 mx-auto ">
             <h2>Registration</h2>
             <form th:action="@{/save}" th:object="${user}" method="post">
-                <div class="form-row">
+                <div class="form-row my-5">
 
                     <div class="col-md-6 form-group">
                         <label>Lastname</label>
@@ -32,7 +32,7 @@
                     </div>
 
                 </div>
-
+//Adresse à rajouter
                 <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
             </form>
 
