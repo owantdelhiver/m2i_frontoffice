@@ -1,6 +1,8 @@
 package com.groupe4.frontoffice.security;
 
+import com.groupe4.frontoffice.repository.user.UserRepository;
 import com.groupe4.frontoffice.service.UserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -12,9 +14,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.util.Optional;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+    @Autowired
+    UserRepository userRepository;
 
     public static final String[] ENDPOINTS_BlACKLIST = {
             "/auth/**",
