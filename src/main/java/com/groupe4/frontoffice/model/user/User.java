@@ -1,9 +1,7 @@
 package com.groupe4.frontoffice.model.user;
 
 import com.groupe4.frontoffice.model.cart.Cart;
-import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.model.order.Order;
-import com.groupe4.frontoffice.model.product.ProductCategory;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

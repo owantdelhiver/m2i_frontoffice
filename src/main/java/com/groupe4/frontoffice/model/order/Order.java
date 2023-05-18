@@ -1,6 +1,5 @@
 package com.groupe4.frontoffice.model.order;
 
-import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.user.User;
 import jakarta.persistence.*;
 
