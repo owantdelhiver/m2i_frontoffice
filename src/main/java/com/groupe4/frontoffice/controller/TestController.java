@@ -8,7 +8,7 @@ import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.model.product.ProductCategory;
 import com.groupe4.frontoffice.model.user.Adress;
 import com.groupe4.frontoffice.model.user.User;
-import com.groupe4.frontoffice.repository.OrderRepository;
+import com.groupe4.frontoffice.repository.order.OrderRepository;
 import com.groupe4.frontoffice.repository.cart.CartLineRepository;
 import com.groupe4.frontoffice.repository.cart.CartRepository;
 import com.groupe4.frontoffice.repository.product.ProductCategoryRepository;
