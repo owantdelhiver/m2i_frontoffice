@@ -8,7 +8,7 @@ public class OrderLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int quantity;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_order")
     private Order order;
 
@@ -21,9 +21,8 @@ public class OrderLine {
         this.quantity = quantity;
     }
 
-    public OrderLine(int quantity, Order order, Product product) {
+    public OrderLine(int quantity, Product product) {
         this.quantity = quantity;
-        this.order = order;
         this.product = product;
     }
 

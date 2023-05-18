@@ -20,7 +20,7 @@ public class Order {
     @Column(name = "status")
     private OrderStatus orderStatus;
 
-    @OneToMany(mappedBy="order")
+    @OneToMany(mappedBy="order", cascade = CascadeType.PERSIST)
     private List<OrderLine> orderLineList;
 
     @ManyToOne
@@ -32,7 +32,13 @@ public class Order {
         this.date = date;
         this.orderStatus = orderStatus;
         this.user = user;
+    }
 
+    public Order(Date date, OrderStatus orderStatus, List<OrderLine> orderLines, User user) {
+        this.date = date;
+        this.orderStatus = orderStatus;
+        this.orderLineList = orderLines;
+        this.user = user;
     }
 
     public Order(int id, Date date, OrderStatus orderStatus) {
