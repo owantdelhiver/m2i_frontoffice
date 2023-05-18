@@ -13,6 +13,9 @@ public class CartLineService {
     CartLineRepository cartLineRepository;
 
     public List<CartLine> fetchAll(){
+
         return cartLineRepository.findAll();
     }
+    public List<CartLine> fetchAllByIdCart(int cartId) {
+        return cartLineRepository.findAllByCartId(cartId);}
 }
