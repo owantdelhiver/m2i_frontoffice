@@ -1,7 +1,6 @@
 package com.groupe4.frontoffice.controller;
 
 import com.groupe4.frontoffice.service.ProductService;
-import com.groupe4.frontoffice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +17,4 @@ public class HomeController {
         model.addAttribute("products", productService.fetchAll());
         return "home";
     }
-
-//    @RequestMapping("/logout")
-//    public String logoutPage() {
-//        return "redirect:/";
-//    }
 }
