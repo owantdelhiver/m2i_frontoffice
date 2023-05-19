@@ -27,6 +27,7 @@ public class WebSecurityConfig {
 
     public static final String[] ENDPOINTS_BlACKLIST = {
             "/auth/**",
+            "/cart"
     };
 
     @Bean

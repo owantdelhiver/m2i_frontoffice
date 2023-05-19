@@ -29,7 +29,7 @@ import java.util.List;
 
 
 @Controller
-public class CartController extends SuperController {
+public class PaymentController extends SuperController {
     @Autowired
     CartLineService cartLineService;
 
@@ -42,23 +42,22 @@ public class CartController extends SuperController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/cart")
-    public String cart(Model model, HttpSession session) {
-        User user = super.getUserSession(session);
-        model.addAttribute("cartlines", cartLineService.fetchAllByIdCart(user.getCart().getId()));
-        return "cart";
+    @GetMapping("/payment")
+    public String cart(Model model) {
+        model.addAttribute("cartlines", cartLineService.fetchAllByIdCart(1));
+        return "payment";
     }
 
-//    @PostMapping("/place-order")
-//    public String convertCart(HttpSession session) {
-//
-//        User user = super.getUserSession(session);
-//
-//        List<CartLine> cartLines = cartLineService.fetchAllByIdCart(user.getCart().getId());
-//        List<OrderLine> orderLines = orderLineService.convertCartLines(cartLines);
-//        Order order = new Order(new Date(), OrderStatus.VALIDATED, orderLines, userService.fetchById(1));
-//        orderLines.forEach(orderLine -> orderLine.setOrder(order));
-//        orderService.saveOrder(order);
-//        return "redirect:/";
-//    }
+    @PostMapping("/place-order")
+    public String convertCart(HttpSession session) {
+
+        User user = super.getUserSession(session);
+
+        List<CartLine> cartLines = cartLineService.fetchAllByIdCart(user.getCart().getId());
+        List<OrderLine> orderLines = orderLineService.convertCartLines(cartLines);
+        Order order = new Order(new Date(), OrderStatus.VALIDATED, orderLines, userService.fetchById(1));
+        orderLines.forEach(orderLine -> orderLine.setOrder(order));
+        orderService.saveOrder(order);
+        return "redirect:/orders";
+    }
 }

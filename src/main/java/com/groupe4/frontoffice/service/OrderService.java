@@ -32,4 +32,6 @@ public class OrderService {
     public void deleteOrder(Order order){
         orderRepository.delete(order);}
 
+    public List<Order> findOrdersByUserId(int id) {return orderRepository.findAllByUserId(id);}
+
 }
