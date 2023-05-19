@@ -3,7 +3,10 @@ package com.groupe4.frontoffice.model.cart;
 import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.model.user.Adress;
 import jakarta.persistence.*;
+import lombok.Data;
+
 @Entity
+@Data
 public class CartLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,35 +26,5 @@ public class CartLine {
         this.quantity = quantity;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }

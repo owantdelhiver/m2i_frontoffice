@@ -1,10 +1,14 @@
 package com.groupe4.frontoffice.model.cart;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,24 +17,7 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<CartLine> cartlines;
 
-    public Cart() {
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<CartLine> getCartlines() {
-        return cartlines;
-    }
-
-    public void setCartlines(List<CartLine> cartlines) {
-        this.cartlines = cartlines;
-    }
 }
 
 

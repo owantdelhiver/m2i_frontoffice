@@ -1,11 +1,7 @@
 package com.groupe4.frontoffice.service;
-
 import com.groupe4.frontoffice.model.user.Adress;
-import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.repository.user.AdressRepository;
-import com.groupe4.frontoffice.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
