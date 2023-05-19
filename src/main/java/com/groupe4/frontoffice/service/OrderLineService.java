@@ -1,8 +1,9 @@
 package com.groupe4.frontoffice.service;
 
 import com.groupe4.frontoffice.model.order.OrderLine;
-import com.groupe4.frontoffice.repository.OrderLineRepository;
-import com.groupe4.frontoffice.repository.OrderRepository;
+import com.groupe4.frontoffice.order.OrderLineRepository;
+import com.groupe4.frontoffice.order.OrderRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
