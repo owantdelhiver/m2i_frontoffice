@@ -1,9 +1,6 @@
 package com.groupe4.frontoffice.model.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Adress {
@@ -16,6 +13,9 @@ public class Adress {
     private String city;
     private String country;
     private String extraInfo;
+
+    @OneToOne(mappedBy = "adress")
+    private User user;
 
     public Adress() {
     }
