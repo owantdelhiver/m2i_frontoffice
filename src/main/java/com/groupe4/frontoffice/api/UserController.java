@@ -5,6 +5,7 @@ import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.service.AdressService;
 import com.groupe4.frontoffice.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,23 +14,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@AllArgsConstructor
 @RequestMapping("/users")
+
 public class UserController {
 
+    @Autowired
     UserService userService;
+    @Autowired
     AdressService adressService;
-    @GetMapping("/saveUser")
-    public String registration(Model model, User user, Adress adress){
+    @GetMapping("/register")
+    public String registration(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("adress", new Adress());
         return "registration";
     }
 
-    @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute User user,Adress adress, Model model){
+    @PostMapping("/register")
+    public String saveUser(@ModelAttribute User user,Adress adress){
         userService.save(user);
         adressService.save(adress);
-        return"registration";
+        return"redirect:/registration";
     }
+
 }
