@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,19 +23,24 @@ public class CartLineController extends SuperController {
     ProductService productService;
     @Autowired
     UserService userService;
+
+    @GetMapping("add-to-cart")
+    public String addtemToCartLine(CartLine cartLine, Model model) {
+        model.addAttribute("cartLine", cartLine);
+        return "product";
+    }
+
+
     @PostMapping("/add-to-cart")
-    public String addItemToCartLine(@RequestParam("id") int id,
+    public String savetemToCartLine( @RequestParam(value = "id" , required = false, defaultValue = "1") int id,
                                     @RequestParam(value = "quantity", defaultValue = "1") int quantity, Model model, HttpSession httpsession) {
-
         Product product = productService.getById(id);
-        User user = super.getUserSession(httpsession);
-
+        String email = (String) httpsession.getAttribute("email");
         if (httpsession != null) {
-            CartLine cartLine = cartLineService.addItemToCart(product, quantity, user.getCart());
+            CartLine cartLine = cartLineService.addItemToCart(product, quantity, email);
             httpsession.setAttribute("totalItems", cartLineService.fetchAll());
-            model.addAttribute("cartLine", cartLine);
         }
-        return "redirect:/cart" ;
+        return "redirect:/add-to-cart";
     }
 
 }

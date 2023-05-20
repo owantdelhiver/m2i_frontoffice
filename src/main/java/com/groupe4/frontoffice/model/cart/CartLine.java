@@ -24,6 +24,9 @@ public class CartLine {
         this.quantity = quantity;
     }
 
+    public CartLine(Product product, int quantity, String email) {
+    }
+
     public int getId() {
         return id;
     }

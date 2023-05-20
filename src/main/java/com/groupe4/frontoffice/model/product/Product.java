@@ -18,6 +18,7 @@ public class Product {
     @JoinColumn(name = "id_category")
     private ProductCategory category;
 
+
     public Product() {
     }
 

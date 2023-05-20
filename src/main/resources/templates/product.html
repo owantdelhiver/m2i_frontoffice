@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>add to Cart</title>
+</head>
+<body>
+<header th:replace="~{fragments/head.html :: header}"></header>
+
+<div class="container my-5 p-5" >
+    <h4 class="text-center">Add to cartline</h4>
+    <form class="col-md-4 offset-md-4" th:action="@{/add-to-cart}" th:object="${cartLine}" method="post">
+        <div class="mb-3">
+            <label>Quantity</label>
+            <input type="number" class="form-control" th:field="*{quantity}">
+        </div>
+        <div class="mb-3">
+            <label>ID product</label>
+            <input type="number" class="form-control" th:field="*{product}">
+        </div>
+
+        <center>
+            <button type="submit" class="btn btn-primary">Add to cart</button>
+        </center>
+    </form>
+</div>
+
+</body>
+</html>
