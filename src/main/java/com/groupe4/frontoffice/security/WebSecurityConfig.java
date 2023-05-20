@@ -19,6 +19,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.io.IOException;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -67,10 +69,11 @@ public class WebSecurityConfig {
 
     private static class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
         @Override
-        public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+        public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
             HttpSession session = request.getSession();
             String email = authentication.getName();
             session.setAttribute("email", email);
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
 }

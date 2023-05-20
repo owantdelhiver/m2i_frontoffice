@@ -1,10 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order</title>
 </head>
 <body>
+<header th:replace="~{fragments/head.html :: header}"></header>
 
+<div class="container mt-5">
+    <div class="row row-cols-2">
+        <div class="col-2">Order History</div>
+        <div class="col-10">
+            <div th:each="orderline : ${orderlines}" class="row mb-4" style="height: 7em;">
+                <div class="col-6">
+                    <p><span th:text="${orderline.getProduct().getName()}"></span></p>
+                </div>
+                <div class="col-2">
+                    <p><span th:text="${orderline.getQuantity()}"></span></p>
+                </div>
+                <div class="col-2">
+                    <p><span th:text="${orderline.getProduct().getPrice()}"></span></p>
+                </div>
+                <div class="col-2">
+                    <p><span th:text="${orderline.getProduct().getPrice()}"></span></p>
+                </div>
+            </div>
+            <div class="col-12">
+                <form th:action="@{/contact}" method="get">
+                    <button type="submit" class="btn btn-warning">Contact us</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

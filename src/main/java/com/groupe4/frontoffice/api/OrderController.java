@@ -25,7 +25,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/{id}")
-    public Optional<Order> findbyId(Long id) {
+    public Optional<Order> findbyId(int id) {
         return orderService.FindOrderById(id);
     }
 
