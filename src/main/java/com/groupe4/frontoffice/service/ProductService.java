@@ -17,5 +17,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getById(int id) { return productRepository.findById(id);}
+    public Product getById(int id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        return optionalProduct.orElse(null);
+    }
 }
