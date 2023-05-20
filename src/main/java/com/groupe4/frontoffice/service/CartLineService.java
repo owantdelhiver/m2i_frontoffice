@@ -1,5 +1,6 @@
 package com.groupe4.frontoffice.service;
 
+import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.repository.cart.CartLineRepository;
@@ -21,6 +22,6 @@ public class CartLineService {
     public List<CartLine> fetchAllByIdCart(int cartId) {
         return cartLineRepository.findAllByCartId(cartId);}
 
-    public CartLine addItemToCart(Optional<Product> product, int quantity, String email){return null;};
+    public CartLine addItemToCart(Product product, int quantity, Cart cart){return cartLineRepository.save(new CartLine(cart, product, quantity));};
 
 }
