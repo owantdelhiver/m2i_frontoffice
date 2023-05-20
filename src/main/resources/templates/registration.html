@@ -15,7 +15,7 @@
 
 <div class="container my-5 p-5" style="border:1px solid black;">
     <h4 class="text-center">New User</h4>
-    <form class="col-md-4 offset-md-4" th:action="@{/users/saveUser}" th:object="${user}" method="post">
+    <form class="col-md-4 offset-md-4" th:action="@{/users/register}" th:object="${user}" method="post">
         <div class="mb-3">
             <label>ID</label>
             <input type="text" class="form-control" th:field="*{id}" readonly>
@@ -39,7 +39,7 @@
         </div>
 
 
-        <form class="col-md-4 offset-md-4" th:action="@{/users/saveUser}" th:object="${adress}" method="post">
+        <form class="col-md-4 offset-md-4" th:action="@{/users/register}" th:object="${adress}" method="post">
             <div class="mb-3">
                 <label>Street</label>
                 <input type="text" class="form-control" th:field="*{street}">
