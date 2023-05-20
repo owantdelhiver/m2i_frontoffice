@@ -32,16 +32,16 @@ public class FrontofficeApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Product product1 = new Product();
-        productRepository.save(product1);
-        Product product2 = new Product();
-        productRepository.save(product2);
-
-        CartLine cartline1 = new CartLine();
-        cartLineRepository.save(cartline1);
-
-        User user1 = new User("a", "b", "lol@email.fr", "", new Cart());
-        userRepository.save(user1);
+//        Product product1 = new Product();
+//        productRepository.save(product1);
+//        Product product2 = new Product();
+//        productRepository.save(product2);
+//
+//        CartLine cartline1 = new CartLine();
+//        cartLineRepository.save(cartline1);
+//
+//        User user1 = new User("a", "b", "lol@email.fr", "", new Cart());
+//        userRepository.save(user1);
 
     }
 }
