@@ -12,10 +12,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api2")
-public class OrderLineController {
+public class OrderLineRestController {
 @Autowired
 OrderService orderService;
- @Autowired
+@Autowired
 OrderLineService orderLineService;
 
 @RequestMapping(value="/orderLines")
