@@ -26,14 +26,11 @@ public class CartLineController extends SuperController {
     @Autowired
     UserService userService;
     @PostMapping("/add-to-cart")
-    public String addItemToCart(@RequestParam("id") int id,
-                                @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity,
-                                Model model, HttpSession httpsession) {
+    public String addItemToCartLine(@RequestParam("id") int id,
+                                @RequestParam(value = "quantity", defaultValue = "1") int quantity, Model model, HttpSession httpsession) {
 
         Optional<Product> product = productService.getById(id);
-        if (httpsession == null) {
-            return "redirect:/login";
-        } else {
+        if (httpsession != null) {
             String email = (String) httpsession.getAttribute("email");
             CartLine cartLine = cartLineService.addItemToCart(product, quantity, email);
             httpsession.setAttribute("totalItems", cartLineService.fetchAll());
