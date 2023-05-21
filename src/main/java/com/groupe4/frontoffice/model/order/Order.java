@@ -26,6 +26,16 @@ public class Order {
     @JoinColumn(name = "id_user")
     private User user;
 
+    public String getTotalPrice() {
+        double totalPrice = 0.0;
+        for (OrderLine orderLine : orderLineList) {
+            int quantity = orderLine.getQuantity();
+            double price = orderLine.getProduct().getPrice();
+            totalPrice += quantity * price;
+        }
+        return String.format("%.2f", totalPrice);
+    }
+
     public Order(int id, Date date, OrderStatus orderStatus, List<OrderLine> orderLines, User user) {
         this.id = id;
         this.date = date;
