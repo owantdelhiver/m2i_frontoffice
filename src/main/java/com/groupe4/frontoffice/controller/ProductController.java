@@ -16,10 +16,9 @@ public class ProductController extends SuperController {
     ProductService productService;
 
         @GetMapping("product/{id}")
-        public String getProductbyId(@PathVariable int id, Model model, CartLine cartLine, Product product) {
-            product=productService.getById(id);
-            model.addAttribute("product", product);
-            model.addAttribute("cartLine", cartLine);
+        public String getProductbyId(@PathVariable int id, Model model) {
+            model.addAttribute("product", productService.getById(id));
+            model.addAttribute("cartLine", new CartLine());
             return "product";
     }
 
