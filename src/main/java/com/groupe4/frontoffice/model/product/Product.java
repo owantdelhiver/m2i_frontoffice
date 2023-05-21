@@ -1,6 +1,9 @@
 package com.groupe4.frontoffice.model.product;
 
+import com.groupe4.frontoffice.model.cart.CartLine;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Product {
@@ -18,7 +21,8 @@ public class Product {
     @JoinColumn(name = "id_category")
     private ProductCategory category;
 
-
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    private List<CartLine> cartlines;
     public Product() {
     }
 
