@@ -1,6 +1,7 @@
 package com.groupe4.frontoffice.controller;
 
 import com.groupe4.frontoffice.model.cart.CartLine;
+import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,9 @@ public class ProductController extends SuperController {
     ProductService productService;
 
         @GetMapping("product/{id}")
-        public String getProductbyId(@PathVariable int id, Model model, CartLine cartLine) {
-            model.addAttribute("product", productService.getById(id));
+        public String getProductbyId(@PathVariable int id, Model model, CartLine cartLine, Product product) {
+            product=productService.getById(id);
+            model.addAttribute("product", product);
             model.addAttribute("cartLine", cartLine);
             return "product";
     }
