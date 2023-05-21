@@ -23,13 +23,13 @@ public class CartLineController extends SuperController {
     @Autowired
     UserService userService;
 
-    @GetMapping("add-to-cart")
-    public String addtemToCartLine(CartLine cartLine, Model model) {
-        model.addAttribute("cartLine", cartLine);
-        return "product";
-    }
-        @PostMapping("/add-to-cart")
-    public String savetemToCartLine(@ModelAttribute CartLine cartLine, HttpSession httpsession) {
+//    @GetMapping("add-to-cart")
+//    public String addtemToCartLine(CartLine cartLine, Model model) {
+//        model.addAttribute("cartLine", cartLine);
+//        return "product";
+//    }
+        @PostMapping("/product/{id}")
+    public String savetemToCartLine(@PathVariable int id, CartLine cartLine, HttpSession httpsession) {
         if(getUserSession(httpsession).getEmail()!=null){
         User user = super.getUserSession(httpsession);
         userService.addCartLine(user, cartLine);
