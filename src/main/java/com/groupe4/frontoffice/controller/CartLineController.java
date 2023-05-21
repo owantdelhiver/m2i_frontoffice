@@ -30,8 +30,9 @@ public class CartLineController extends SuperController {
     }
         @PostMapping("/add-to-cart")
     public String savetemToCartLine(@ModelAttribute CartLine cartLine, HttpSession httpsession) {
+        if(getUserSession(httpsession).getEmail()!=null){
         User user = super.getUserSession(httpsession);
         userService.addCartLine(user, cartLine);
         return "redirect:/cart";
-    }
-}
+    } else {return "redirect:/login";}
+}}
