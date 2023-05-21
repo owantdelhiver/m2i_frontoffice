@@ -18,8 +18,8 @@ public class OrderService {
     @Autowired
     OrderLineRepository orderLineRepository;
 
-    public Optional<Order> FindOrderById(Long id){
-       return orderRepository.findById(id);
+    public Optional<Order> FindOrderById(int id){
+       return orderRepository.findById((long) id);
     }
 
     public List<Order> FindAllOrders(){
@@ -32,4 +32,8 @@ public class OrderService {
     public void deleteOrder(Order order){
         orderRepository.delete(order);}
 
+    public List<Order> findOrdersByUserId(int id) {return orderRepository.findAllByUserId(id);}
+
+    public Optional<Order> findOrderById(int id) { return orderRepository.findById((long) id);
+    }
 }

@@ -12,7 +12,7 @@
 
 <div class="container mt-5">
     <div class="row row-cols-2">
-        <div class="col-2">TODO trie</div>
+        <div class="col-2"></div>
         <div class="col-10">
             <div th:each="cartline : ${cartlines}" class="row mb-4" style="height: 7em;">
                 <div class="col-2">
@@ -27,8 +27,8 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form th:action="@{/place-order}" method="post">
-                        <button type="submit" class="btn btn-success">Valider la commande</button>
+                    <form th:action="@{/payment}" method="get">
+                        <button type="submit" class="btn btn-success">Proceed to payment</button>
                     </form>
                 </div>
             </div>
