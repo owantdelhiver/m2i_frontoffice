@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
 
 public class Cart {
     @Id
@@ -20,10 +18,12 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartLine> cartlines;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user")
-    private User user;
     public Cart() {
+    }
+
+    public Cart(int id, List<CartLine> cartlines) {
+        this.id = id;
+        this.cartlines = cartlines;
     }
 
     public int getId() {
@@ -42,5 +42,4 @@ public class Cart {
         this.cartlines = cartlines;
     }
 }
-
 

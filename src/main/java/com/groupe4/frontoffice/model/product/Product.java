@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
 
 public class Product {
     @Id
@@ -30,6 +28,17 @@ public class Product {
     public Product() {
     }
 
+    public Product(int id, String name, float price, String short_description, String description, int stock, String picture_url, ProductCategory category, List<OrderLine> orderlines) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.short_description = short_description;
+        this.description = description;
+        this.stock = stock;
+        this.picture_url = picture_url;
+        this.category = category;
+        this.orderlines = orderlines;
+    }
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<OrderLine> orderlines;
     public Product(String name, float price, String short_description, String description, int stock, String picture_url, ProductCategory category) {

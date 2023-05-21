@@ -21,10 +21,6 @@ public class Adress {
     private String country;
     private String extraInfo;
 
-    @OneToOne
-    @JoinColumn( name = "user_id")
-    private User user;
-
     public Adress() {
     }
 

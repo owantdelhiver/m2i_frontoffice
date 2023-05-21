@@ -9,13 +9,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
-
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +24,11 @@ public class User {
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @NonNull
     @JoinColumn( name = "id_adress")
     private Adress adress;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_cart")
     private Cart cart;
 
