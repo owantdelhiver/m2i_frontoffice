@@ -34,11 +34,10 @@ public class UserController {
 
     @PostMapping("/register")
     public String saveUser(User user, Adress adress){
-        userService.save(user);
-       // Adress adress = user.getAdress();
         adressService.save(adress);
+        user.setAdress(adress);
+        userService.save(user);
 
-//        adressService.save(adress.setId(user.getAdress().getId()));
         return"redirect:/users/register";
     }
 
