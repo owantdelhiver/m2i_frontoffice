@@ -2,6 +2,8 @@ package com.groupe4.frontoffice.model.order;
 import com.groupe4.frontoffice.model.product.Product;
 import jakarta.persistence.*;
 
+import java.text.DecimalFormat;
+
 @Entity
 public class OrderLine {
     @Id
@@ -25,6 +27,16 @@ public class OrderLine {
         this.quantity = quantity;
         this.product = product;
     }
+
+    public String getTotal() {
+        if (product != null) {
+            double total = quantity * product.getPrice();
+            return String.format("%.2f", total);
+        } else {
+            return "0.00";
+        }
+    }
+
 
     public OrderLine() {
     }

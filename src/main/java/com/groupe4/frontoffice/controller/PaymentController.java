@@ -43,16 +43,13 @@ public class PaymentController extends SuperController {
     UserService userService;
 
     @GetMapping("/payment")
-    public String cart(Model model) {
-        model.addAttribute("cartlines", cartLineService.fetchAllByIdCart(1));
+    public String cart() {
         return "payment";
     }
 
     @PostMapping("/place-order")
     public String convertCart(HttpSession session) {
-
         User user = super.getUserSession(session);
-
         List<CartLine> cartLines = cartLineService.fetchAllByIdCart(user.getCart().getId());
         List<OrderLine> orderLines = orderLineService.convertCartLines(cartLines);
         Order order = new Order(new Date(), OrderStatus.VALIDATED, orderLines, userService.fetchById(1));

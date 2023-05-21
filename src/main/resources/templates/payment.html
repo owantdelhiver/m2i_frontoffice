@@ -1,14 +1,8 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+<head th:replace="~{fragments/head.html :: head}"></head>
 <body>
-<header th:replace="~{fragments/head.html :: header}"></header>
+<header th:replace="~{fragments/nav.html :: header}"></header>
 
 <div class="row justify-content-center mt-5">
   <div class="col-md-7 col-lg-5 mt-5">
@@ -17,7 +11,7 @@
         <div class="text-center">
           <h3 class="mb-4">Payment</h3>
         </div>
-        <form th:action="@{/payment}" method="post">
+        <form th:action="@{/place-order}" method="post">
           <div class="form-floating mt-5 mb-5">
             <input id="cardNumber" type="text" name="cardNumber" class="form-control" placeholder="16 numbers" required>
             <label for="cardNumber">Card Number</label>
@@ -34,39 +28,15 @@
             <input id="securityCode" type="number" name ="securityCode" class="form-control" placeholder="3 numbers" required>
             <label class="form-control-placeholder" for="securityCode">Security Code</label>
           </div>
+          <div class="text-center mt-5">
+            <div class="form-floating mb-3">
+              <button type="submit" class="btn btn-success">Validate payment</button>
+            </div>
+            <div class="form-floating">
+              <button type="button" class="btn btn-warning" onclick="window.location.href='/cart'">Return to cart</button>
+            </div>
+          </div>
         </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container mt-5">
-  <div class="row row-cols-2">
-    <div class="col-2"></div>
-    <div class="col-10">
-      <div class="text-center">
-        <h3 class="mb-4">Order details</h3>
-      </div>
-      <div th:each="cartline : ${cartlines}" class="row mb-4" style="height: 7em;">
-        <div class="col-2">
-          <p><span>Id: </span><span th:text="${cartline.id}"></span></p>
-        </div>
-        <div class="col-4">
-          <p><span>Quantity: </span><span th:text="${cartline.quantity}"></span></p>
-        </div>
-        <div class="col-4">
-          <p><span>Product: </span><span th:text="${cartline.product.getName()}"></span></p>
-        </div>
-        <div class="col-2">
-          <p><span>Total: Some price</span></span></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <form th:action="@{/place-order}" method="post">
-            <button type="submit" class="btn btn-success">Validate payment</button>
-          </form>
-        </div>
       </div>
     </div>
   </div>
