@@ -1,11 +1,8 @@
 package com.groupe4.frontoffice.model.order;
 
-import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import java.util.Date;
 import java.util.List;

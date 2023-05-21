@@ -2,9 +2,7 @@ package com.groupe4.frontoffice.model.product;
 
 import com.groupe4.frontoffice.model.order.OrderLine;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import java.util.List;
 

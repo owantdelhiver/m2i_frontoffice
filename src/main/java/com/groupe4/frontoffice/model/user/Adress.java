@@ -1,14 +1,8 @@
 package com.groupe4.frontoffice.model.user;
-
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NonNull;
+
 
 @Entity
-@Data
-@AllArgsConstructor
-@NonNull
 public class Adress {
 
     @Id

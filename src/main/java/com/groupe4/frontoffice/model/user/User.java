@@ -1,16 +1,8 @@
 package com.groupe4.frontoffice.model.user;
-
 import com.groupe4.frontoffice.dto.UserDto;
 import com.groupe4.frontoffice.model.cart.Cart;
-import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.model.order.Order;
-import com.groupe4.frontoffice.model.product.ProductCategory;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
 import java.util.List;
 
 @Entity
@@ -24,7 +16,7 @@ public class User {
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @NonNull
+
     @JoinColumn( name = "id_adress")
     private Adress adress;
 

@@ -1,9 +1,9 @@
 package com.groupe4.frontoffice.model.cart;
 
 import com.groupe4.frontoffice.model.product.Product;
-import com.groupe4.frontoffice.model.user.Adress;
+
 import jakarta.persistence.*;
-import lombok.Data;
+
 
 @Entity
 public class CartLine {
