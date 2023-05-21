@@ -1,7 +1,6 @@
 package com.groupe4.frontoffice.service;
 
 import com.groupe4.frontoffice.model.order.Order;
-import com.groupe4.frontoffice.model.order.OrderLine;
 
 import com.groupe4.frontoffice.order.OrderLineRepository;
 import com.groupe4.frontoffice.order.OrderRepository;
