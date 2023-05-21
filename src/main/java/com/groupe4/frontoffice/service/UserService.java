@@ -18,7 +18,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findByEmail(String email) { return userRepository.findByEmail(email).get();}
+   public User findByEmail(String email) { return userRepository.findByEmail(email).get();}
 
     public void addCartLine(User user, CartLine cartLine) {
         List<CartLine> cartLines = user.getCart().getCartlines();

@@ -28,10 +28,8 @@ public class CartLineController extends SuperController {
         model.addAttribute("cartLine", cartLine);
         return "product";
     }
-
-
         @PostMapping("/add-to-cart")
-    public String savetemToCartLine(@ModelAttribute CartLine cartLine,  HttpSession httpsession) {
+    public String savetemToCartLine(@ModelAttribute CartLine cartLine, HttpSession httpsession) {
         User user = super.getUserSession(httpsession);
         userService.addCartLine(user, cartLine);
         return "redirect:/cart";
