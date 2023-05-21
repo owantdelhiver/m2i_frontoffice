@@ -2,10 +2,16 @@ package com.groupe4.frontoffice.model.product;
 
 import com.groupe4.frontoffice.model.order.OrderLine;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
+@Data
+@AllArgsConstructor
+
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +23,7 @@ public class Product {
     private int stock;
     private String picture_url;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_category")
     private ProductCategory category;
 

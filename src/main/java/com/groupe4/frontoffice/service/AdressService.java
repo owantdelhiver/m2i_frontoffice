@@ -11,13 +11,17 @@ public class AdressService {
     @Autowired
     AdressRepository adressRepository;
 
-    public List<Adress> fetchAll(){
+    public List<Adress> fetchAll() {
         return adressRepository.findAll();
     }
 
-    public void save(Adress adress){adressRepository.save(adress);}
+    public void save(Adress adress) {
+        adressRepository.save(adress);
+    }
 
-    public int findById(int id){adressRepository.findById(id);
+    public int findById(int id) {
+        adressRepository.findById(id);
         return new Adress().getId();
     }
+
 }

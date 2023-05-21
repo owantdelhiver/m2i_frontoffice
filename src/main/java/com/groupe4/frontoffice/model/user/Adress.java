@@ -1,9 +1,16 @@
 package com.groupe4.frontoffice.model.user;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NonNull;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NonNull
 public class Adress {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -14,7 +21,8 @@ public class Adress {
     private String country;
     private String extraInfo;
 
-    @OneToOne(mappedBy = "adress")
+    @OneToOne
+    @JoinColumn( name = "user_id")
     private User user;
 
     public Adress() {
@@ -33,8 +41,9 @@ public class Adress {
         return id;
     }
 
-    public void setId(int id) {
+    public Adress setId(int id) {
         this.id = id;
+        return Adress.this;
     }
 
     public String getStreet() {
@@ -84,4 +93,6 @@ public class Adress {
     public void setExtraInfo(String extraInfo) {
         this.extraInfo = extraInfo;
     }
+
+
 }

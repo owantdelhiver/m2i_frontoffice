@@ -6,10 +6,16 @@ import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.model.order.Order;
 import com.groupe4.frontoffice.model.product.ProductCategory;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
+@Data
+@AllArgsConstructor
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +26,10 @@ public class User {
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_adress")
+    @JoinColumn( name = "id_adress")
     private Adress adress;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_cart")
     private Cart cart;
 
@@ -114,5 +120,8 @@ public class User {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public Adress setAdress() { return adress;
     }
 }
