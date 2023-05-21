@@ -1,6 +1,9 @@
 package com.groupe4.frontoffice;
 
+import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.product.Product;
+import com.groupe4.frontoffice.model.user.Adress;
+import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.repository.cart.CartLineRepository;
 import com.groupe4.frontoffice.repository.product.ProductRepository;
 import com.groupe4.frontoffice.repository.user.UserRepository;
@@ -28,7 +31,8 @@ public class FrontofficeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //     Product product1 = new Product();
+        User user1 = new User("a", "b", "m.charazed@hotmail.fr", "AZERTY", new Adress(), new Cart(), null);
+        userRepository.save(user1);
  //       productRepository.save(product1);
 //        Product product2 = new Product();
 //        productRepository.save(product2);
