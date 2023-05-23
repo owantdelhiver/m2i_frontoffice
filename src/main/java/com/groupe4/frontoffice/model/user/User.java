@@ -1,11 +1,13 @@
 package com.groupe4.frontoffice.model.user;
 
+import com.groupe4.frontoffice.dto.UserDto;
 import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.order.Order;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -58,6 +60,16 @@ public class User implements UserDetails {
         this.email = email;
         this.password = password;
         this.cart = cart;
+    }
+
+    public UserDto toDto(){
+        UserDto dto = new UserDto();
+        dto.setId(this.getId());
+        dto.setFirstname(this.getFirstname());
+        dto.setLastname(this.getLastname());
+        dto.setEmail(this.getEmail());
+        dto.setPassword(this.getPassword());
+        return dto;
     }
 
     public int getId() {
@@ -154,5 +166,8 @@ public class User implements UserDetails {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public Adress setAdress() { return adress;
     }
 }

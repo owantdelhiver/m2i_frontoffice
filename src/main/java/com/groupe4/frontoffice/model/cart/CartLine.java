@@ -1,6 +1,7 @@
 package com.groupe4.frontoffice.model.cart;
 
 import com.groupe4.frontoffice.model.product.Product;
+import com.groupe4.frontoffice.model.user.Adress;
 import jakarta.persistence.*;
 @Entity
 public class CartLine {
@@ -16,6 +17,13 @@ public class CartLine {
     private int quantity;
 
     public CartLine() {
+    }
+
+    public CartLine(int id, Cart cart, Product product, int quantity) {
+        this.id = id;
+        this.cart = cart;
+        this.product = product;
+        this.quantity = quantity;
     }
 
     public CartLine(Cart cart, Product product, int quantity) {

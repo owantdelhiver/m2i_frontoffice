@@ -1,5 +1,6 @@
 package com.groupe4.frontoffice.model.order;
 
+import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.user.User;
 import jakarta.persistence.*;
 
@@ -26,24 +27,7 @@ public class Order {
     @JoinColumn(name = "id_user")
     private User user;
 
-    public String getTotalPrice() {
-        double totalPrice = 0.0;
-        for (OrderLine orderLine : orderLineList) {
-            int quantity = orderLine.getQuantity();
-            double price = orderLine.getProduct().getPrice();
-            totalPrice += quantity * price;
-        }
-        return String.format("%.2f", totalPrice);
-    }
-
-    public Order(int id, Date date, OrderStatus orderStatus, List<OrderLine> orderLines, User user) {
-        this.id = id;
-        this.date = date;
-        this.orderStatus = orderStatus;
-        this.user = user;
-    }
-
-    public Order(Date date, OrderStatus orderStatus, List<OrderLine> orderLines, User user) {
+    public Order( Date date, OrderStatus orderStatus, List<OrderLine> orderLines, User user) {
         this.date = date;
         this.orderStatus = orderStatus;
         this.orderLineList = orderLines;
@@ -97,5 +81,15 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getTotalPrice() {
+        double totalPrice = 0.0;
+        for (OrderLine orderLine : orderLineList) {
+            int quantity = orderLine.getQuantity();
+            double price = orderLine.getProduct().getPrice();
+            totalPrice += quantity * price;
+        }
+        return String.format("%.2f", totalPrice);
     }
 }

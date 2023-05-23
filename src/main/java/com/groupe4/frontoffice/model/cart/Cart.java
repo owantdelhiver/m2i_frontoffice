@@ -16,6 +16,11 @@ public class Cart {
     public Cart() {
     }
 
+    public Cart(int id, List<CartLine> cartlines) {
+        this.id = id;
+        this.cartlines = cartlines;
+    }
+
     public int getId() {
         return id;
     }
@@ -32,5 +37,4 @@ public class Cart {
         this.cartlines = cartlines;
     }
 }
-
 

@@ -1,6 +1,7 @@
 package com.groupe4.frontoffice.model.product;
 
 import com.groupe4.frontoffice.model.cart.CartLine;
+import com.groupe4.frontoffice.model.order.OrderLine;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class Product {
     private int stock;
     private String picture_url;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_category")
     private ProductCategory category;
 
@@ -26,6 +27,19 @@ public class Product {
     public Product() {
     }
 
+    public Product(int id, String name, float price, String short_description, String description, int stock, String picture_url, ProductCategory category, List<OrderLine> orderlines) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.short_description = short_description;
+        this.description = description;
+        this.stock = stock;
+        this.picture_url = picture_url;
+        this.category = category;
+        this.orderlines = orderlines;
+    }
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<OrderLine> orderlines;
     public Product(String name, float price, String short_description, String description, int stock, String picture_url, ProductCategory category) {
         this.name = name;
         this.price = price;

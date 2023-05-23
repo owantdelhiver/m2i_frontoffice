@@ -2,8 +2,6 @@ package com.groupe4.frontoffice.model.order;
 import com.groupe4.frontoffice.model.product.Product;
 import jakarta.persistence.*;
 
-import java.text.DecimalFormat;
-
 @Entity
 public class OrderLine {
     @Id
