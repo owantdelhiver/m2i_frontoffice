@@ -31,8 +31,8 @@ public class FrontofficeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User user1 = new User("a", "b", "m.charazed@hotmail.fr", "AZERTY", new Adress(), new Cart(), null);
-        userRepository.save(user1);
+        //User user1 = new User("a", "b", "m.charazed@hotmail.fr", "AZERTY", new Adress(), new Cart(), null);
+       // userRepository.save(user1);
  //       productRepository.save(product1);
 //        Product product2 = new Product();
 //        productRepository.save(product2);
