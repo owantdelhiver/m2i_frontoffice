@@ -3,6 +3,10 @@ body {
     /*background-image: url("/images/background-multi.jpg");*/
 }
 
+.card-header{
+    font-family: "Helvetica Neue Condensed", sans-serif;
+    font-weight: bold;}
+
 header {
     color: blue;
 }

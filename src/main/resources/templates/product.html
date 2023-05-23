@@ -1,54 +1,59 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Product 1</title>
+
 </head>
 <body>
 <head th:replace="~{fragments/head.html :: head}"></head>
 <body>
 <header th:replace="~{fragments/nav.html :: nav}"></header>
 
-<th>Name</th>
-<th>Price</th>
-<th>Category</th>
-
-</tr>
-</thead>
 <tbody>
-<div class="container my-5 col-md-8" th:action="@{/product/{id}}" th:object="${product}" method="get">
-<div th:each="product : ${product}">
-    <tr>
-        <th th:text="${product.id}"></th>
-        <td>
-            <img src="file:///C:/Users/Aerosson/Documents/images-backoffice/1/hardisk.jpg" alt="Logo" style="max-height: 7em; max-width: 100%;">
-        </td>
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.price} + '€'"></td>
-        <td th:text="${product.getCategory().getName()}"></td>
-        <td>
-        </td>
-    </tr>
-<div class="container my-5 p-5" >
-    <h4 class="text-center">Add to cartline</h4>
-    <form class="col-md-4 offset-md-4" th:action="@{/product/{id}(id=${product.id})}" th:object="${cartLine}" method="post">
-        <div class="mb-3">
-            <label>Quantity</label>
-            <input type="number" class="form-control" th:field="*{quantity}">
-        </div>
-<!--        <div class="mb-3">-->
-<!--            <label>ID product</label>-->
-<!--            <input type="number" class="form-control" th:field="*{product}">-->
-<!--        </div>-->
+<div class="container my-5 p-5">
+    <div class="col-md-4 offset-md-4">
+        <div class="card" style="width: 25rem;">
+            <div class="card-header">
+            <img class="card-img-top" src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp-spacegray-select-202206_GEO_EMEA_LANG_FR?wid=1280&hei=1190&fmt=jpeg&qlt=90&.v=1664497359213"
+                 alt="Logo" style="max-height: 16em; max-width: 100%;">
 
-        <center>
-            <button type="submit" class="btn btn-primary">Add to cart</button>
-        </center>
-    </form>
-</div>
+
+                <div th:action="@{/product/{id}}" th:object="${product}" method="get">
+                    <div th:each="product : ${product}">
+                        <tr>
+                                <br>
+                                <td th:text="${product.name}"></td>
+                                </br>
+                            <br>
+                                <td th:text="${product.price} + '€'"></td>
+                            </br>
+                            <br>
+                                <td th:text="${product.getCategory().getName()}"></td>
+                            </br>
+                        </tr>
+
+                        <form th:action="@{/product/{id}(id=${product.id})}" th:object="${cartLine}" method="post">
+                            <div class="mb-3">
+                                <br>
+                                <label>Quantity</label>
+                                </br>
+                                <br>
+                                <input type="number" class="form-control" th:field="*{quantity}">
+                                </br>
+
+                                <button type="submit" class="btn-success">Add to cart</button></div>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
