@@ -16,44 +16,54 @@
 <div class="container my-5 p-5">
     <div class="col-md-4 offset-md-4">
         <div class="card" style="width: 25rem;">
-            <div class="card-header">
-            <img class="card-img-top" src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp-spacegray-select-202206_GEO_EMEA_LANG_FR?wid=1280&hei=1190&fmt=jpeg&qlt=90&.v=1664497359213"
+
+            <img class="card-img-top"
+                 src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp-spacegray-select-202206_GEO_EMEA_LANG_FR?wid=1280&hei=1190&fmt=jpeg&qlt=90&.v=1664497359213"
                  alt="Logo" style="max-height: 16em; max-width: 100%;">
 
 
-                <div th:action="@{/product/{id}}" th:object="${product}" method="get">
-                    <div th:each="product : ${product}">
-                        <tr>
-                                <br>
-                                <td th:text="${product.name}"></td>
-                                </br>
+            <div th:action="@{/product/{id}}" th:object="${product}" method="get">
+                <div th:each="product : ${product}">
+                    <tr>
+
+                        <div class="card-header">
                             <br>
-                                <td th:text="${product.price} + '€'"></td>
+                            <td th:text="${product.name}"></td>
+                            </br>
+
+                            <br>
+                            <td th:text="${product.description}"></td>
+                            </br>
+                        <br>
+
+                            <td th:text="${product.price} + '€'"></td>
                             </br>
                             <br>
-                                <td th:text="${product.getCategory().getName()}"></td>
+                            <td th:text="${product.getCategory().getName()}"></td>
                             </br>
-                        </tr>
+                    </tr>
 
-                        <form th:action="@{/product/{id}(id=${product.id})}" th:object="${cartLine}" method="post">
-                            <div class="mb-3">
-                                <br>
-                                <label>Quantity</label>
-                                </br>
-                                <br>
-                                <input type="number" class="form-control" th:field="*{quantity}">
-                                </br>
+                    <form th:action="@{/product/{id}(id=${product.id})}" th:object="${cartLine}" method="post">
+                        <div class="col-md-4 mb-3">
+                            <br>
+                            <label>Quantity</label>
+                            </br>
+                            <br>
+                            <input type="number" class="form-control" th:field="*{quantity}">
+                            </br>
 
-                                <button type="submit" class="btn-success">Add to cart</button></div>
-                            </div>
-                        </form>
-                    </div>
+                            <button type="submit" class="btn-success">Add to cart</button>
+                        </div>
 
 
-
+                </form>
+                </div>
             </div>
+
+
         </div>
     </div>
+</div>
 
 </body>
 </html>
