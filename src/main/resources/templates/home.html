@@ -60,7 +60,7 @@
                                 <tr>
                                     <th th:text="${product.id}"></th>
                                     <td>
-                                        <img src="file:///C:/Users/Aerosson/Documents/images-backoffice/1/hardisk.jpg" alt="Logo" style="max-height: 7em; max-width: 100%;">
+                                        <img th:src="@{'http://localhost:8080/backoffice/api/images/product?id=' + ${product.id}}"  alt="Logo" style="max-height: 7em; max-width: 100%;">
                                     </td>
                                     <td th:text="${product.name}"></td>
                                     <td th:text="${product.price} + '€'"></td>
