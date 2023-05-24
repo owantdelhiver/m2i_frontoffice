@@ -49,7 +49,6 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User registerNewUserAccount(User user) {
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         List<Role> role = (List<Role>) new Role("USER");
        user.setRolelist(role);
