@@ -62,7 +62,8 @@ public class User implements UserDetails {
         this.cart = cart;
     }
 
-//    public UserDto toDto(){
+
+    //    public UserDto toDto(){
 //        UserDto dto = new UserDto();
 //        dto.setId(this.getId());
 //        dto.setFirstname(this.getFirstname());
@@ -170,4 +171,5 @@ public class User implements UserDetails {
 
     public Adress setAdress() { return adress;
     }
+
 }
