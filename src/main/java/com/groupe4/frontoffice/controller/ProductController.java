@@ -22,5 +22,4 @@ public class ProductController extends SuperController {
             return "product";
     }
 
-
 }

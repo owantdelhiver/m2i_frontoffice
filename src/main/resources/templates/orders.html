@@ -41,13 +41,13 @@
                 <td th:text="${order.orderStatus}"></td>
                 <td th:text="${order.getTotalPrice()} + '€'"></td>
                 <td>
-                  <div th:each="orderLine : ${order.orderLineList}">
-                  <p th:text="${orderLine.product.name}"></p>
+                  <div th:each="orderLineDto : ${order.orderLineDtoList}">
+                  <p th:text="${orderLineDto.productDto.name}"></p>
                   </div>
                 </td>
                 <td>
-                  <div th:each="orderLine : ${order.orderLineList}">
-                    <p th:text="${orderLine.quantity}"></p>
+                  <div th:each="orderLineDto : ${order.orderLineDtoList}">
+                    <p th:text="${orderLineDto.quantity}"></p>
                   </div>
                 </td>
 
