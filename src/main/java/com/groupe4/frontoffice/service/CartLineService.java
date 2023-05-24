@@ -21,5 +21,7 @@ public class CartLineService {
     public List<CartLine> fetchAllByIdCart(int cartId) {
         return cartLineRepository.findAllByCartId(cartId);}
 
-
+    public void deleteById(int id) {
+        cartLineRepository.deleteById(id);
+    }
 }

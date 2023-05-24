@@ -31,5 +31,14 @@ public class CartLineController extends SuperController {
         cartLine.setProduct(product);
         userService.addCartLine(user, cartLine);
         return "redirect:/cart";
-    } else {return "redirect:/login";}
-}}
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @GetMapping("/cartline/delete/{id}")
+    public String deleteById(@PathVariable int id) {
+        cartLineService.deleteById(id);
+        return "redirect:/cart";
+    }
+}
