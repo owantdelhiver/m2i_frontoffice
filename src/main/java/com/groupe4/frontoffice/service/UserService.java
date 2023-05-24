@@ -2,10 +2,14 @@ package com.groupe4.frontoffice.service;
 
 import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.dto.UserDto;
+import com.groupe4.frontoffice.model.user.Role;
 import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import javax.management.InstanceAlreadyExistsException;
 import java.util.List;
 import java.util.Optional;
 
