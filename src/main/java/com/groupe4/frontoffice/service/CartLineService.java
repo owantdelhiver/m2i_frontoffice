@@ -30,5 +30,7 @@ public class CartLineService {
                 .map(cartLineMapper::cartLineToCartLineDto)
                 .collect(Collectors.toList());
     }
-
+    public void deleteAllByCartId(int id) {
+        cartLineRepository.deleteAllByCartId(id);
+    }
 }
