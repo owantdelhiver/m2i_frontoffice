@@ -1,4 +1,7 @@
 package com.groupe4.frontoffice.controller;
+import com.groupe4.frontoffice.dto.ProductDto;
+import com.groupe4.frontoffice.mapper.ProductMapper;
+import com.groupe4.frontoffice.mapper.ProductMapper;
 import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.model.user.User;
@@ -22,19 +25,25 @@ public class CartLineController extends SuperController {
     ProductService productService;
     @Autowired
     UserService userService;
+    @Autowired
+    ProductMapper productMapper;
 
-//    @GetMapping("add-to-cart")
-//    public String addtemToCartLine(CartLine cartLine, Model model) {
-//        model.addAttribute("cartLine", cartLine);
-//        return "product";
-//    }
-        @PostMapping("/product/{id}")
+    @PostMapping("/add-to-cart/{id}")
     public String saveItemToCartLine(@PathVariable int id, CartLine cartLine, HttpSession httpsession) {
         if(getUserSession(httpsession).getEmail()!=null){
         User user = super.getUserSession(httpsession);
-        Product product=productService.getById(id);
-        cartLine.setProduct(product);
+        ProductDto productDto=productService.getById(id);
+        cartLine.setProduct(productMapper.productDtoToProduct(productDto));
         userService.addCartLine(user, cartLine);
         return "redirect:/cart";
-    } else {return "redirect:/login";}
-}}
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @GetMapping("/cartline/delete/{id}")
+    public String deleteById(@PathVariable int id) {
+        cartLineService.deleteById(id);
+        return "redirect:/cart";
+    }
+}

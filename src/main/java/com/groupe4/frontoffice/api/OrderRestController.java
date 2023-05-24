@@ -26,7 +26,7 @@ public class OrderRestController {
 
     @RequestMapping(value = "/{id}")
     public Optional<Order> findbyId(int id) {
-        return orderService.FindOrderById(id);
+        return orderService.findOrderByIdRest(id);
     }
 
     public void save(Order order) {

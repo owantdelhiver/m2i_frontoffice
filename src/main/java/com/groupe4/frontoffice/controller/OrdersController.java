@@ -1,5 +1,6 @@
 package com.groupe4.frontoffice.controller;
 
+import com.groupe4.frontoffice.dto.OrderDto;
 import com.groupe4.frontoffice.model.order.Order;
 import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.service.OrderService;
@@ -28,9 +29,9 @@ public class OrdersController extends SuperController {
 
     @GetMapping("/order/{id}")
     public String order(@PathVariable("id") int id, Model model) {
-        Optional<Order> order = orderService.findOrderById(id);
-        if (order.isPresent()) {
-            model.addAttribute("orderlines", order.get().getOrderLineList());
+        Optional<OrderDto> orderDto = orderService.findOrderById(id);
+        if (orderDto.isPresent()) {
+            model.addAttribute("orderlines", orderDto.get().getOrderLineDtoList());
         } else {
             return "home";
         }
