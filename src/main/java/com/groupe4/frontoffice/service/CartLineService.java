@@ -6,6 +6,7 @@ import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.repository.cart.CartLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +31,7 @@ public class CartLineService {
                 .map(cartLineMapper::cartLineToCartLineDto)
                 .collect(Collectors.toList());
     }
+    @Transactional
     public void deleteAllByCartId(int id) {
         cartLineRepository.deleteAllByCartId(id);
     }
