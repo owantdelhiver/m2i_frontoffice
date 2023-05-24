@@ -18,7 +18,7 @@
         <div class="card" style="width: 25rem;">
 
             <img class="card-img-top"
-                 src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp-spacegray-select-202206_GEO_EMEA_LANG_FR?wid=1280&hei=1190&fmt=jpeg&qlt=90&.v=1664497359213"
+                 th:src="@{'http://localhost:8080/backoffice/api/images/product?id=' + ${product.id}}"
                  alt="Logo" style="max-height: 16em; max-width: 100%;">
 
 
@@ -41,6 +41,7 @@
                             <br>
                             <td th:text="${product.getCategory().getName()}"></td>
                             </br>
+                        </div>
                     </tr>
 
                     <form th:action="@{/product/{id}(id=${product.id})}" th:object="${cartLine}" method="post">
