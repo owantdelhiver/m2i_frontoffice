@@ -1,4 +1,4 @@
-package com.groupe4.frontoffice.api;
+package com.groupe4.frontoffice.controller;
 
 import com.groupe4.frontoffice.model.user.Adress;
 import com.groupe4.frontoffice.model.user.User;
