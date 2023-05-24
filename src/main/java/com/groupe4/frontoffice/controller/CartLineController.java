@@ -1,4 +1,6 @@
 package com.groupe4.frontoffice.controller;
+import com.groupe4.frontoffice.dto.ProductDto;
+import com.groupe4.frontoffice.mapper.ProductMapper;
 import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.model.user.User;
@@ -23,6 +25,9 @@ public class CartLineController extends SuperController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ProductMapper productMapper;
+
 //    @GetMapping("add-to-cart")
 //    public String addtemToCartLine(CartLine cartLine, Model model) {
 //        model.addAttribute("cartLine", cartLine);
@@ -32,8 +37,8 @@ public class CartLineController extends SuperController {
     public String saveItemToCartLine(@PathVariable int id, CartLine cartLine, HttpSession httpsession) {
         if(getUserSession(httpsession).getEmail()!=null){
         User user = super.getUserSession(httpsession);
-        Product product=productService.getById(id);
-        cartLine.setProduct(product);
+        ProductDto productDto=productService.getById(id);
+        cartLine.setProduct(productMapper.productDtoToProduct(productDto));
         userService.addCartLine(user, cartLine);
         return "redirect:/cart";
     } else {return "redirect:/login";}

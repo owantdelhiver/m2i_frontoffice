@@ -5,7 +5,6 @@ import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.service.AdressService;
 import com.groupe4.frontoffice.service.UserService;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
