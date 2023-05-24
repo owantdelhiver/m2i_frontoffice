@@ -21,6 +21,10 @@ public class Cart {
         this.cartlines = cartlines;
     }
 
+    public Cart(List<CartLine> cartlines) {
+        this.cartlines = cartlines;
+    }
+
     public int getId() {
         return id;
     }
