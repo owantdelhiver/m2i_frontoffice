@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,8 +51,8 @@ public class UserService {
     public User registerNewUserAccount(User user) {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        //  user.setRolelist((List<Role>) new Role(user.getId(), "user"));
+        List<Role> role = (List<Role>) new Role("USER");
+       user.setRolelist(role);
         return userRepository.save(user);
     }
 }

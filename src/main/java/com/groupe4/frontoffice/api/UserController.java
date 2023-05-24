@@ -35,7 +35,7 @@ public class UserController {
     public String saveUser(User user, Adress adress){
         adressService.save(adress);
         user.setAdress(adress);
-        userService.save(user);
+        userService.registerNewUserAccount(user);
 
         return"redirect:/users/register";
     }
