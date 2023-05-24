@@ -1,9 +1,12 @@
 package com.groupe4.frontoffice.service;
 
+import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.dto.UserDto;
 import com.groupe4.frontoffice.model.user.Role;
 import com.groupe4.frontoffice.model.user.User;
+import com.groupe4.frontoffice.repository.cart.CartLineRepository;
+import com.groupe4.frontoffice.repository.cart.CartRepository;
 import com.groupe4.frontoffice.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +24,12 @@ public class UserService {
 
     @Autowired
     RoleService roleService;
+
+    @Autowired
+    CartLineService cartLineService;
+
+    @Autowired
+    CartRepository cartService;
 
     public User fetchById(int id) {
         return userRepository.findById(id);
@@ -52,11 +61,17 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User registerNewUserAccount(User user) {
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         List<Role> roles = new ArrayList<>();
         roles.add(roleService.getByName("USER"));
         user.setRolelist(roles);
+
+
+        Cart cart = new Cart();
+        cartService.save(cart);
+        user.setCart(cart);
 
         return userRepository.save(user);
     }
