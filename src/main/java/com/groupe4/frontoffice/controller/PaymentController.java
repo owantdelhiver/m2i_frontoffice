@@ -55,6 +55,7 @@ public class PaymentController extends SuperController {
         Order order = new Order(new Date(), OrderStatus.VALIDATED, orderLines, userService.fetchById(user.getId()));
         orderLines.forEach(orderLine -> orderLine.setOrder(order));
         orderService.saveOrder(order);
+        cartLineService.deleteAllByCartId(user.getCart().getId());
         return "redirect:/orders";
     }
 }
