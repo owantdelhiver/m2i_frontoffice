@@ -45,20 +45,7 @@ public class CartController extends SuperController {
     @GetMapping("/cart")
     public String cart(Model model, HttpSession session) {
         User user = super.getUserSession(session);
-        model.addAttribute("cartlines", cartLineService.fetchAllByIdCart(user.getCart().getId()));
+        model.addAttribute("cartlines", cartLineService.fetchAllByIdCartDto(user.getCart().getId()));
         return "cart";
     }
-
-//    @PostMapping("/place-order")
-//    public String convertCart(HttpSession session) {
-//
-//        User user = super.getUserSession(session);
-//
-//        List<CartLine> cartLines = cartLineService.fetchAllByIdCart(user.getCart().getId());
-//        List<OrderLine> orderLines = orderLineService.convertCartLines(cartLines);
-//        Order order = new Order(new Date(), OrderStatus.VALIDATED, orderLines, userService.fetchById(1));
-//        orderLines.forEach(orderLine -> orderLine.setOrder(order));
-//        orderService.saveOrder(order);
-//        return "redirect:/";
-//    }
 }

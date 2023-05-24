@@ -52,7 +52,7 @@ public class PaymentController extends SuperController {
         User user = super.getUserSession(session);
         List<CartLine> cartLines = cartLineService.fetchAllByIdCart(user.getCart().getId());
         List<OrderLine> orderLines = orderLineService.convertCartLines(cartLines);
-        Order order = new Order(new Date(), OrderStatus.VALIDATED, orderLines, userService.fetchById(1));
+        Order order = new Order(new Date(), OrderStatus.VALIDATED, orderLines, userService.fetchById(user.getId()));
         orderLines.forEach(orderLine -> orderLine.setOrder(order));
         orderService.saveOrder(order);
         return "redirect:/orders";
