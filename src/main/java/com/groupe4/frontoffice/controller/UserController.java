@@ -1,13 +1,15 @@
-package com.groupe4.frontoffice.api;
+package com.groupe4.frontoffice.controller;
 
 import com.groupe4.frontoffice.model.user.Adress;
 import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.service.AdressService;
 import com.groupe4.frontoffice.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,7 +35,7 @@ public class UserController {
     public String saveUser(User user, Adress adress){
         adressService.save(adress);
         user.setAdress(adress);
-        userService.save(user);
+        userService.registerNewUserAccount(user);
 
         return"redirect:/users/register";
     }
