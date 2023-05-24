@@ -44,7 +44,7 @@
                         </div>
                     </tr>
 
-                    <form th:action="@{/product/{id}(id=${product.id})}" th:object="${cartLine}" method="post">
+                    <form th:action="@{/add-to-cart/{id}(id=${product.id})}" th:object="${cartLine}" method="post">
                         <div class="col-md-4 mb-3">
                             <br>
                             <label>Quantity</label>

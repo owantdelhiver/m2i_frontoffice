@@ -30,7 +30,8 @@ public class WebSecurityConfig {
     public static final String[] ENDPOINTS_BlACKLIST = {
             "/auth/**",
             "/cart",
-            "/orders"
+            "/orders",
+            "/add-to-cart/**"
     };
 
     @Bean
