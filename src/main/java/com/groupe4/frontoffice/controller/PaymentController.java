@@ -4,6 +4,7 @@ import com.groupe4.frontoffice.model.cart.CartLine;
 import com.groupe4.frontoffice.model.order.Order;
 import com.groupe4.frontoffice.model.order.OrderLine;
 import com.groupe4.frontoffice.model.order.OrderStatus;
+import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.repository.order.OrderLineRepository;
 import com.groupe4.frontoffice.repository.order.OrderRepository;
@@ -42,6 +43,9 @@ public class PaymentController extends SuperController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ProductService productService;
+
     @GetMapping("/payment")
     public String cart() {
         return "payment";
@@ -49,12 +53,26 @@ public class PaymentController extends SuperController {
 
     @PostMapping("/place-order")
     public String convertCart(HttpSession session) {
+
         User user = super.getUserSession(session);
+
+        // Creating the orderlines
         List<CartLine> cartLines = cartLineService.fetchAllByIdCart(user.getCart().getId());
         List<OrderLine> orderLines = orderLineService.convertCartLines(cartLines);
+
+        // Creating and saving the order
         Order order = new Order(new Date(), OrderStatus.VALIDATED, orderLines, userService.fetchById(user.getId()));
         orderLines.forEach(orderLine -> orderLine.setOrder(order));
         orderService.saveOrder(order);
+
+        // Updating the stock
+        for (OrderLine orderLine : orderLines) {
+            Product product = orderLine.getProduct();
+            int newStock = product.getStock() - orderLine.getQuantity();
+            productService.updateProductStock(newStock, (int) product.getId());
+        }
+
+        // Emptying the cart
         cartLineService.deleteAllByCartId(user.getCart().getId());
         return "redirect:/orders";
     }

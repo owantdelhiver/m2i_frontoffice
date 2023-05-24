@@ -29,5 +29,16 @@ public class ProductService {
         Optional<Product> optionalProduct = productRepository.findById(id);
         return optionalProduct.map(productMapper::productToProductDto).orElse(null);
     }
+
+    public void updateProductStock(int newStock, int productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+            System.out.println(product.getName() + " stock is " + product.getStock());
+            product.setStock(newStock);
+            System.out.println(product.getName() + " stock is " + newStock);
+            productRepository.save(product);
+        }
+    }
 }
 
