@@ -19,6 +19,9 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RoleService roleService;
+
     public User fetchById(int id) {
         return userRepository.findById(id);
     }
@@ -51,8 +54,11 @@ public class UserService {
     public User registerNewUserAccount(User user) {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        List<Role> role = (List<Role>) new Role("USER");
-       user.setRolelist(role);
+
+        List<Role> roles = new ArrayList<>();
+        roles.add(roleService.getByName("USER"));
+        user.setRolelist(roles);
+
         return userRepository.save(user);
     }
 }
