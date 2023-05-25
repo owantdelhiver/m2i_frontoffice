@@ -1,12 +1,10 @@
 package com.groupe4.frontoffice.model.contact;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 
 @Entity
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
