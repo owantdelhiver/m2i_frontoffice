@@ -17,12 +17,12 @@ public class TicketController {
     TicketService ticketService;
     @GetMapping(value = "/ticket")
 
-    public String registration(Model model, Ticket ticket){
+    public String ticket(Model model, Ticket ticket){
         model.addAttribute("ticket", ticket);;
         return "ticket";
     }
     @PostMapping("/ticket")
-    public String userContact(Ticket ticket){
+    public String saveTicket(Ticket ticket){
         ticketService.save(ticket);
         return"redirect:/";
     }
