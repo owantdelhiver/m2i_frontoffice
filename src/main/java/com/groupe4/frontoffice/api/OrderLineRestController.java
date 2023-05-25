@@ -14,8 +14,6 @@ import java.util.Optional;
 @RequestMapping("/api2")
 public class OrderLineRestController {
 @Autowired
-OrderService orderService;
-@Autowired
 OrderLineService orderLineService;
 
 @RequestMapping(value="/orderLines")

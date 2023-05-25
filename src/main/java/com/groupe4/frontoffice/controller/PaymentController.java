@@ -56,22 +56,14 @@ public class PaymentController extends SuperController {
 
         User user = super.getUserSession(session);
 
-        // Creating the orderlines
+        // Fetching the cartlines
         List<CartLine> cartLines = cartLineService.fetchAllByIdCart(user.getCart().getId());
+        // Converting them into orderlines
         List<OrderLine> orderLines = orderLineService.convertCartLines(cartLines);
-
         // Creating and saving the order
-        Order order = new Order(new Date(), OrderStatus.VALIDATED, orderLines, userService.fetchById(user.getId()));
-        orderLines.forEach(orderLine -> orderLine.setOrder(order));
-        orderService.saveOrder(order);
-
+        orderService.generateOrder(user, orderLines);
         // Updating the stock
-        for (OrderLine orderLine : orderLines) {
-            Product product = orderLine.getProduct();
-            int newStock = product.getStock() - orderLine.getQuantity();
-            productService.updateProductStock(newStock, (int) product.getId());
-        }
-
+        productService.updateProductsStock(orderLines);
         // Emptying the cart
         cartLineService.deleteAllByCartId(user.getCart().getId());
         return "redirect:/orders";

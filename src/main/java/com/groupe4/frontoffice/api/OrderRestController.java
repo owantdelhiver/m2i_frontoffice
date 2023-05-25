@@ -14,10 +14,11 @@ import java.util.Optional;
 @RestController
 public class OrderRestController {
 
-    @Autowired
-    OrderService orderService;
-    @Autowired
-    OrderLineService orderLineService;
+    private final OrderService orderService;
+
+    public OrderRestController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @RequestMapping(value = "/orders")
     public List<Order> findAll() {
@@ -36,5 +37,4 @@ public class OrderRestController {
     public void delete(Order order) {
         orderService.deleteOrder(order);
     }
-
 }

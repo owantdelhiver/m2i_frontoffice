@@ -2,6 +2,7 @@ package com.groupe4.frontoffice.service;
 
 import com.groupe4.frontoffice.dto.ProductDto;
 import com.groupe4.frontoffice.mapper.ProductMapper;
+import com.groupe4.frontoffice.model.order.OrderLine;
 import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.repository.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,14 @@ public class ProductService {
             product.setStock(newStock);
             System.out.println(product.getName() + " stock is " + newStock);
             productRepository.save(product);
+        }
+    }
+
+    public void updateProductsStock(List<OrderLine> orderLines) {
+        for (OrderLine orderLine : orderLines) {
+            Product product = orderLine.getProduct();
+            int newStock = product.getStock() - orderLine.getQuantity();
+            updateProductStock(newStock, (int) product.getId());
         }
     }
 }

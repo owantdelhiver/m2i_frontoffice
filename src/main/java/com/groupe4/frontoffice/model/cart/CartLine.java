@@ -32,15 +32,6 @@ public class CartLine {
         this.quantity = quantity;
     }
 
-    public String getTotal() {
-        if (product != null) {
-            double total = quantity * product.getPrice();
-            return String.format("%.2f", total);
-        } else {
-            return "0.00";
-        }
-    }
-
     public int getId() {
         return id;
     }

@@ -83,13 +83,4 @@ public class Order {
         this.user = user;
     }
 
-    public String getTotalPrice() {
-        double totalPrice = 0.0;
-        for (OrderLine orderLine : orderLineList) {
-            int quantity = orderLine.getQuantity();
-            double price = orderLine.getProduct().getPrice();
-            totalPrice += quantity * price;
-        }
-        return String.format("%.2f", totalPrice);
-    }
 }
