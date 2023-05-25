@@ -13,10 +13,15 @@ import java.util.stream.Collectors;
 
 @Component
 public class ProductService {
-    @Autowired
-    private ProductRepository productRepository;
-    @Autowired
-    private ProductMapper productMapper;
+    private final ProductRepository productRepository;
+
+    private final ProductMapper productMapper;
+
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
+        this.productRepository = productRepository;
+        this.productMapper = productMapper;
+    }
+
 
     public List<ProductDto> fetchAll(){
         List<Product> products = productRepository.findAll();
