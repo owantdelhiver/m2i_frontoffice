@@ -1,6 +1,5 @@
 package com.groupe4.frontoffice.api;
 
-import com.groupe4.frontoffice.model.contact.Contact;
 import com.groupe4.frontoffice.model.user.Adress;
 import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.service.AdressService;
