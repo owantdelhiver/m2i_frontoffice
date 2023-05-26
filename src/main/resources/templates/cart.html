@@ -39,7 +39,7 @@
                             <div th:each="cartline : ${cartlines}">
                                 <tr>
                                     <th class= "id-column" th:text="${cartline.id}"></th>
-                                    <td><img th:src="@{'http://localhost:8080/backoffice/api/images/product?id=' + ${cartline.productDto.id}}" alt="Logo" style="max-height: 7em; max-width: 100%;"></td>
+                                    <td><img th:src="@{'http://localhost:8080/api/images/product?id=' + ${cartline.productDto.id}}" alt="Logo" style="max-height: 7em; max-width: 100%;"></td>
                                     <td th:text="${cartline.productDto.name}"></td>
                                     <td class="unit-price-column" th:text="${cartline.productDto.price} + '€'"></td>
                                     <td th:text="${cartline.quantity}"></td>
