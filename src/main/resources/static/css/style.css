@@ -136,3 +136,37 @@ html{
 .login-block {
     margin-bottom: 96px;
 }
+
+.add-cart-button {
+    display: flex;
+    justify-content: center;
+}
+
+.card-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.quantity-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-field {
+    grid-column: 2;
+}
+
+.button-field {
+    grid-column: 3;
+    padding-bottom: 6px;
+    margin-left: 60px;
+}
+
+.single-product-header {
+    text-align: center;
+}
+
+
