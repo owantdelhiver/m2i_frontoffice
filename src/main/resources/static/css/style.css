@@ -1,6 +1,6 @@
 body {
-    background-color: #c1f6f7;
-    /*background-image: url("/images/background-multi.jpg");*/
+    /*background-color: #c1f6f7;*/
+    background-image: url("../images/background-multi.jpg");
 }
 
 .card-header{
@@ -168,5 +168,14 @@ html{
 .single-product-header {
     text-align: center;
 }
+
+.register-prompt {
+    padding-left: 11px;
+}
+
+.error-text {
+    color: #f59f2f;
+}
+
 
 

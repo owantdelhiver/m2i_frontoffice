@@ -8,6 +8,7 @@ import com.groupe4.frontoffice.repository.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,6 +54,21 @@ public class ProductService {
             int newStock = product.getStock() - orderLine.getQuantity();
             updateProductStock(newStock, (int) product.getId());
         }
+    }
+
+
+    public List<ProductDto> filterByKeyword(String keyword) {
+        List<ProductDto> filteredProductDtos = new ArrayList<>();
+        List<ProductDto> productsDtos = fetchAll();
+
+        for (ProductDto productDto : productsDtos) {
+            if (productDto.getName().toLowerCase().contains(keyword.toLowerCase()) ||
+                    productDto.getDescription().toLowerCase().contains(keyword.toLowerCase()) ||
+                        productDto.getCategory().getName().toLowerCase().contains(keyword.toLowerCase())) {
+                filteredProductDtos.add(productDto);
+            }
+        }
+        return filteredProductDtos;
     }
 }
 

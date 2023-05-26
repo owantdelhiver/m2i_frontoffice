@@ -11,22 +11,25 @@
         <div class="text-center">
           <h3 class="mb-4">Payment</h3>
         </div>
-        <form th:action="@{/place-order}" method="post">
+        <form id="paymentForm" action="/place-order" method="post" onsubmit="return validateForm()">
           <div class="form-floating mt-5 mb-5">
             <input id="cardNumber" type="text" name="cardNumber" class="form-control" placeholder="16 numbers" required>
             <label for="cardNumber">Card Number</label>
-          </div>
-          <div class="form-floating mt-5 mb-5">
-            <input id="expiration" type="text" name ="expiration" class="form-control" placeholder="MM/AA" required>
-            <label class="form-control-placeholder" for="expiration">Expiration Date</label>
+            <span id="cardNumberError" class="error-text"></span>
           </div>
           <div class="form-floating mt-5 mb-5">
             <input id="cardHolder" type="text" name ="cardHolder" class="form-control" placeholder="First and last name of the card holder" required>
             <label class="form-control-placeholder" for="cardHolder">Card Holder Identity</label>
           </div>
           <div class="form-floating mt-5 mb-5">
-            <input id="securityCode" type="number" name ="securityCode" class="form-control" placeholder="3 numbers" required>
+            <input id="expiration" type="text" name="expiration" class="form-control" placeholder="MM/YY" required>
+            <label class="form-control-placeholder" for="expiration">Expiration Date</label>
+            <span id="expirationError" class="error-text"></span>
+          </div>
+          <div class="form-floating mt-5 mb-5">
+            <input id="securityCode" type="text" name="securityCode" class="form-control" placeholder="3 numbers" required>
             <label class="form-control-placeholder" for="securityCode">Security Code</label>
+            <span id="securityCodeError" class="error-text"></span>
           </div>
           <div class="text-center mt-5">
             <div class="form-floating mb-3">
@@ -41,5 +44,57 @@
     </div>
   </div>
 </div>
+
+<script>
+  function validateForm() {
+    const cardNumberInput = document.getElementById('cardNumber');
+    const cardNumberError = document.getElementById('cardNumberError');
+    const cardNumber = cardNumberInput.value.trim();
+
+    const expirationInput = document.getElementById('expiration');
+    const expirationError = document.getElementById('expirationError');
+    const expiration = expirationInput.value.trim();
+    const currentMonth = new Date().getMonth() + 1;
+
+    const securityCodeInput = document.getElementById('securityCode');
+    const securityCodeError = document.getElementById('securityCodeError');
+    const securityCode = securityCodeInput.value.trim();
+
+    const numberPattern = /^\d{16}$/;
+    if (!numberPattern.test(cardNumber)) {
+      cardNumberError.textContent = 'Please enter a valid 16-digit card number.';
+      cardNumberInput.focus();
+      return false; //
+    }
+    cardNumberError.textContent = '';
+
+    const expirationPattern = /^(0[1-9]|1[0-2])\/[0-9]{2}$/;
+    if (!expirationPattern.test(expiration)) {
+      expirationError.textContent = 'Please enter a valid expiration date in MM/YY format.';
+      expirationInput.focus();
+      return false;
+    }
+
+    const expirationMonth = parseInt(expiration.split('/')[0]);
+    const expirationYear = parseInt(expiration.split('/')[1]);
+
+    const currentYear = new Date().getFullYear() % 100;
+    if (expirationYear < currentYear || (expirationYear === currentYear && expirationMonth < currentMonth)) {
+      expirationError.textContent = 'Date expired. Please chose a valid date';
+      expirationInput.focus();
+      return false;
+    }
+    expirationError.textContent = '';
+
+    if (securityCode.length !== 3 || isNaN(securityCode)) {
+      securityCodeError.textContent = 'Please enter a valid 3-digit security code.';
+      securityCodeInput.focus();
+      return false;
+    }
+    securityCodeError.textContent = '';
+
+    return true;
+  }
+</script>
 </body>
 </html>

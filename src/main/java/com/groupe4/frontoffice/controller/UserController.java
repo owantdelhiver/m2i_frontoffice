@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/users")
-
 public class UserController {
 
     @Autowired
@@ -25,7 +24,8 @@ public class UserController {
 
 
     @GetMapping("/register")
-    public String registration(Model model, User user, Adress adress){
+    public String registration(
+            Model model, User user, Adress adress){
         model.addAttribute("user", user);
         model.addAttribute("adress", adress);
         return "registration";
@@ -37,7 +37,7 @@ public class UserController {
         user.setAdress(adress);
         userService.registerNewUserAccount(user);
 
-        return"redirect:/users/register";
+        return"redirect:/login";
     }
 
 }
