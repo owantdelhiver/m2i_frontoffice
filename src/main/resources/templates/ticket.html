@@ -11,12 +11,25 @@
             crossorigin="anonymous">
     <title>Contact us</title>
 </head>
-
 <body>
+<div class="container my-5 p-5" style="border:1px solid black;">
+    <h4 class="text-center">Contact us</h4>
+    <form class="col-md-4 offset-md-4" id="ticket" action="/ticket" method="post">
 
-<h1>Admins</h1>
-<ul id="admins"></ul>
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
 
+<label for="selectAdmin"></label>
+<select id="selectAdmin" name="adminId">
+    <option th:each=admin:${admins} th:value="${admin.adminId}" th:text=${admin.email}></option>
+</select>
+        <input type="message" class="form-control" id="message" name="message">
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 <script>
 
     const url = 'http://localhost:8080/api/admins';
@@ -26,47 +39,48 @@
         })
         .then((data) => {
             let admins = data;
-      console.log(admins)
-            // admins.map(function (admin) {
-            //     let li = document.createElement('li');
-            //     let name = document.createElement('h2');
-            //     let email = document.createElement('span');
-            //
-            //     name.innerHTML = `${admin.name}`;
-            //     email.innerHTML = `${author.email}`;
-            //
-            //     li.appendChild(name);
-            //     li.appendChild(email);
-            //     list.appendChild(li);
-            //
-            //     ul.appendChild(list);
-           // })
+               let selectAdmin = document.getElementById('selectAdmin');
+               admins.forEach((admin) => {
+                   let option = document.createElement('option');
+                   option.value=admin.email;
+                   selectAdmin.appendChild(<option value="option"></option>);}
+
+               )
         });
-
 </script>
+<script>
+    const form = document.getElementById('ticket');
+    form.addEventListener('submit', function (e) {
 
-<div class="container my-5 p-5" style="border:1px solid black;">
-    <h4 class="text-center">Contact us</h4>
-    <form class="col-md-4 offset-md-4" th:action="@{/ticket}" th:object="${ticket}" method="post">
+        const url = 'http://localhost:8080/api/tickets/create';
+        const email = document.getElementById('email').value;
+        const adminId = +document.getElementById('adminId').value;
+        const message = document.getElementById('message').value;
 
-        <div class="mb-3">
-            <label>Email</label>
-            <input type="email" class="form-control" th:field="*{email}">
-        </div>
-
-        <div class="mb-3">
-            <label>What is your concern </label>
-            <input type="text" class="form-control" th:field="*{message}">
-        </div>
-
-        <center>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </center>
-
-    </form>
-</div>
-
-
+        const data = {
+            email: email,
+            adminId: adminId,
+            message: message
+        };
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then((response) => {
+                if (response.ok) {
+                    console.log('Ticket ok');
+                } else {
+                    console.log('Erreur');
+                }
+            })
+            .catch((error) => {
+                console.log('Erreur :', error);
+            });
+    });
+</script>
+</body>
 </body>
 </html>
-

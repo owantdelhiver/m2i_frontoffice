@@ -12,6 +12,7 @@ public class Ticket {
     private int id;
     private String email;
     private String message;
+    private String adminId;
 
     public Ticket() {
     }
@@ -20,6 +21,13 @@ public class Ticket {
         this.id = id;
         this.email = email;
         this.message = message;
+    }
+
+    public Ticket(int id, String email, String message, String adminId) {
+        this.id = id;
+        this.email = email;
+        this.message = message;
+        this.adminId = adminId;
     }
 
     public int getId() {
@@ -45,4 +53,13 @@ public class Ticket {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
+    }
 }
+
