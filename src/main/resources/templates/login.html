@@ -29,15 +29,14 @@
 <body>
 <header th:replace="~{fragments/nav.html :: header}"></header>
 
-<div class="row justify-content-center mt-5">
+<div class="login-block row justify-content-center mt-5">
   <div class="col-md-7 col-lg-5 mt-5">
     <div class="wrap" style="background-color: white; border-radius: 25px">
       <div class="d-flex justify-content-center pt-5">
-        <img th:src="@{/images/logo1200.png}">
+        <img th:src="@{/images/logo1500.png}" style="width: 248px; height: 150px;">
       </div>
       <div class="login-wrap p-4 p-md-5">
         <div class="text-center">
-          <h3 class="mb-4">Login</h3>
         </div>
         <form th:action="@{/login}" method="post">
           <div class="form-floating mt-5 mb-5">

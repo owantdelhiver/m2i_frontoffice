@@ -29,6 +29,10 @@ header {
     border: #97ff94;
     color:#97ff94;
 }
+.btn-primary {
+background-color: #00174a;
+}
+
 .filter-box {
     background-color: white;
 }
@@ -56,6 +60,57 @@ html{
     padding-left: 130px;
 }
 
+@media (max-width: 576px) {
+    .main-containers {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .product-column {
+        display:none;
+    }
+    .quantity-column {
+        display: none;
+    }
+    .status-column {
+        display: none;
+    }
+    .id-column {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-containers {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .category-column {
+        display: none;
+    }
+    .id-column {
+        display: none;
+    }
+    .unit-price-column {
+        display: none;
+    }
+    .product-column {
+        display:none;
+    }
+    .quantity-column {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .main-containers {
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+    .category-column {
+        display: none;
+    }
+}
+
 .form-check-input {
     margin-right: 15px;
 }
@@ -76,4 +131,8 @@ html{
 .order-line {
     display: flex;
     justify-content: space-between;
+}
+
+.login-block {
+    margin-bottom: 96px;
 }
