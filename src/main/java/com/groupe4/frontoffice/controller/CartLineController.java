@@ -29,21 +29,32 @@ public class CartLineController extends SuperController {
     ProductMapper productMapper;
 
     @PostMapping("/add-to-cart/{id}")
-    public String saveItemToCartLine(@PathVariable int id, CartLine cartLine, HttpSession httpsession) {
-        if(getUserSession(httpsession).getEmail()!=null){
-        User user = super.getUserSession(httpsession);
-        ProductDto productDto=productService.getById(id);
-        cartLine.setProduct(productMapper.productDtoToProduct(productDto));
-        userService.addCartLine(user, cartLine);
-        return "redirect:/cart";
-        } else {
-            return "redirect:/login";
-        }
+    public String saveItemToCartLine(@PathVariable int id, CartLine cartLine, HttpSession httpsession, Model model) {
+//        if (getUserSession(httpsession).getEmail() != null) {
+            User user = super.getUserSession(httpsession);
+            Product product = productService.getFullProductById(id);
+            int qty = cartLine.getQuantity();
+            if (qty <= product.getStock()) {
+                ProductDto productDto = productService.getById(id);
+                cartLine.setProduct(productMapper.productDtoToProduct(productDto));
+                userService.addCartLine(user, cartLine);
+                return "redirect:/cart";
+            } else {
+                String error = "Sorry, this product has insufficient stock.";
+                model.addAttribute("product", productService.getById(id));
+                model.addAttribute("cartLine", new CartLine());
+                model.addAttribute("error", error);
+                return "product";
+            }
+//        } else {
+//            return "redirect:/login";
+//        }
     }
 
     @GetMapping("/cartline/delete/{id}")
-    public String deleteById(@PathVariable int id) {
+    public String deleteById ( @PathVariable int id){
         cartLineService.deleteById(id);
         return "redirect:/cart";
     }
 }
+

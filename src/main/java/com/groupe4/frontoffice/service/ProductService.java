@@ -7,10 +7,7 @@ import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.repository.product.ProductRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -24,12 +21,16 @@ public class ProductService {
         this.productMapper = productMapper;
     }
 
-
     public List<ProductDto> fetchAll(){
         List<Product> products = productRepository.findAll();
         return products.stream()
                 .map(productMapper::productToProductDto)
                 .collect(Collectors.toList());
+    }
+
+    public Product getFullProductById(int id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Product not found"));
     }
 
     public ProductDto getById(int id) {
