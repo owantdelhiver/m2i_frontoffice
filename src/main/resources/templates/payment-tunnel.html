@@ -11,7 +11,7 @@
         <div class="text-center">
           <h3 class="mb-4">Payment</h3>
         </div>
-        <form id="paymentForm" action="/place-order" method="post" onsubmit="return validateForm()">
+        <form id="paymentForm" th:action="@{/place-order}" method="post" onsubmit="return validateForm()">
           <div class="form-floating mt-5 mb-5">
             <input id="cardNumber" type="text" name="cardNumber" class="form-control" placeholder="16 numbers" required>
             <label for="cardNumber">Card Number</label>

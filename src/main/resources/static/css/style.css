@@ -177,5 +177,18 @@ html{
     color: #f59f2f;
 }
 
+.search-button {
+    border: none;
+    background-color: transparent;
+    padding: 0 0 9px;
+}
+
+.search-icon {
+    background-color: white;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+
 
 

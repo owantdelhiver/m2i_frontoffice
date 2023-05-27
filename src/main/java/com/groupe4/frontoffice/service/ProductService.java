@@ -5,10 +5,10 @@ import com.groupe4.frontoffice.mapper.ProductMapper;
 import com.groupe4.frontoffice.model.order.OrderLine;
 import com.groupe4.frontoffice.model.product.Product;
 import com.groupe4.frontoffice.repository.product.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
