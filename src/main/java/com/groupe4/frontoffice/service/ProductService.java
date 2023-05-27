@@ -70,5 +70,24 @@ public class ProductService {
         }
         return filteredProductDtos;
     }
+
+    public List<ProductDto> filterProductsByCategories(String[] selectedCategories) {
+        if (selectedCategories == null || selectedCategories.length == 0) {
+            return fetchAll();
+        } else {
+            List<Integer> categoryIds = Arrays.stream(selectedCategories)
+                    .map(Integer::parseInt)
+                    .toList();
+            List<ProductDto> filteredProductDtos = new ArrayList<>();
+            List<ProductDto> productsDtos = fetchAll();
+
+            for (ProductDto productDto : productsDtos) {
+                if (categoryIds.contains(productDto.getCategory().getId())) {
+                    filteredProductDtos.add(productDto);
+                }
+            }
+            return filteredProductDtos;
+        }
+    }
 }
 
