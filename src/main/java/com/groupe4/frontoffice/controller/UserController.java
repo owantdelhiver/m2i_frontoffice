@@ -56,7 +56,6 @@ public class UserController extends SuperController {
         adressService.save(adress);
         user.setAdress(adress);
         userService.editUserAccount(user);
-
         return"redirect:/";
     }
 
