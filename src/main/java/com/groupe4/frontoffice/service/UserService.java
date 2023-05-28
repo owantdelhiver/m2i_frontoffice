@@ -78,4 +78,18 @@ public class UserService {
 
         return userRepository.save(user);
     }
+
+    public User editUserAccount(User user) {
+
+        List<Role> roles = new ArrayList<>();
+        roles.add(roleService.getByName("USER"));
+        user.setRolelist(roles);
+
+        Cart cart = new Cart();
+        cartService.save(cart);
+        user.setCart(cart);
+
+        return userRepository.save(user);
+    }
+
 }
