@@ -43,8 +43,8 @@ background-color: #00174a;
 }
 
 .btn-secondary:hover {
-    background-color: black; /* Replace with your desired secondary color */
-    color: white; /* Replace with the desired text color */
+    background-color: black;
+    color: white;
 }
 
 .filter-box {
