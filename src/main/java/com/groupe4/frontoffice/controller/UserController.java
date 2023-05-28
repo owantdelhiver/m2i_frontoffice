@@ -1,5 +1,7 @@
 package com.groupe4.frontoffice.controller;
 
+import com.groupe4.frontoffice.dto.AdressDto;
+import com.groupe4.frontoffice.dto.UserDto;
 import com.groupe4.frontoffice.model.user.Adress;
 import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.service.AdressService;
@@ -46,16 +48,18 @@ public class UserController extends SuperController {
             Model model,
             HttpSession session){
         User user = super.getUserSession(session);
-        model.addAttribute("user", user);
-        model.addAttribute("adress", user.getAdress());
+        UserDto userDto = userService.convertToUserDto(user);
+        model.addAttribute("user", userDto);
+        model.addAttribute("adress", userDto.getAdress());
         return "edit-profile";
     }
 
     @PostMapping("/edit-profile")
-    public String editUser(User user, Adress adress){
-        adressService.save(adress);
+    public String editUser(UserDto user, AdressDto adress){
         user.setAdress(adress);
-        userService.editUserAccount(user);
+        User userUpdated = userService.convertToUser(user);
+        adressService.save(userUpdated.getAdress());
+        userService.editUserAccount(userUpdated);
         return"redirect:/";
     }
 

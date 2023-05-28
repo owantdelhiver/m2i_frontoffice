@@ -1,12 +1,11 @@
 package com.groupe4.frontoffice.service;
 
+import com.groupe4.frontoffice.dto.UserDto;
+import com.groupe4.frontoffice.mapper.UserMapper;
 import com.groupe4.frontoffice.model.cart.Cart;
 import com.groupe4.frontoffice.model.cart.CartLine;
-import com.groupe4.frontoffice.dto.UserDto;
-import com.groupe4.frontoffice.model.user.Role;
 import com.groupe4.frontoffice.model.user.Role;
 import com.groupe4.frontoffice.model.user.User;
-import com.groupe4.frontoffice.repository.cart.CartLineRepository;
 import com.groupe4.frontoffice.repository.cart.CartRepository;
 import com.groupe4.frontoffice.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-import javax.management.InstanceAlreadyExistsException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +30,9 @@ public class UserService {
 
     @Autowired
     CartRepository cartService;
+
+    @Autowired
+    UserMapper userMapper;
 
     public User fetchById(int id) {
         return userRepository.findById(id);
@@ -79,7 +79,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User editUserAccount(User user) {
+    public void editUserAccount(User user) {
 
         List<Role> roles = new ArrayList<>();
         roles.add(roleService.getByName("USER"));
@@ -89,7 +89,15 @@ public class UserService {
         cartService.save(cart);
         user.setCart(cart);
 
-        return userRepository.save(user);
+        userRepository.save(user);
+    }
+
+    public UserDto convertToUserDto(User user) {
+        return userMapper.userToUserDto(user);
+    }
+
+    public User convertToUser(UserDto userDto) {
+        return userMapper.userDtoToUser(userDto);
     }
 
 }

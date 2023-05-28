@@ -5,7 +5,7 @@
         <img th:src="@{/images/logo1200.png}" width="100px" height="61px" alt="Icon">
       </a>
       <ul class="nav col-12 col-lg-auto me-lg mb-2 justify-content-end mb-md-0 ms-auto">
-        <li><a th:href="@{/}" class="nav-link px-2 text-dark">Home</a></li>
+        <li><a th:href="@{/}" class="nav-link px-2 text-dark">Products</a></li>
         <li><a th:href="@{/cart}" class="nav-link px-2 text-dark">My Cart</a></li>
         <li><a th:href="@{/orders}" class="nav-link px-2 text-dark">My Orders</a></li>
         <li th:unless="${session.email}"><a th:href="@{/login}" class="nav-link px-2 text-dark">Login</a></li>
