@@ -22,9 +22,7 @@
         </div>
 
 <label for="selectAdmin"></label>
-<select id="selectAdmin" name="adminId">
-    <option th:each=admin:${admins} th:value="${admin.adminId}" th:text=${admin.email}></option>
-</select>
+<select id="selectAdmin" name="adminId"></select>
         <input type="message" class="form-control" id="message" name="message">
 
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -42,10 +40,10 @@
                let selectAdmin = document.getElementById('selectAdmin');
                admins.forEach((admin) => {
                    let option = document.createElement('option');
-                   option.value=admin.email;
-                   selectAdmin.appendChild(<option value="option"></option>);}
-
-               )
+                   option.value = admin.adminId;
+                   option.text = admin.email;
+                   selectAdmin.appendChild(option);
+               })
         });
 </script>
 <script>
