@@ -14,18 +14,18 @@
 <body>
 <div class="container my-5 p-5" style="border:1px solid black;">
     <h4 class="text-center">Contact us</h4>
-    <form class="col-md-4 offset-md-4" id="ticket" action="/ticket" method="post">
+    <form class="col-md-4 offset-md-4" id="ticket" action="#" method="post">
 
         <div class="mb-3">
             <label>Email</label>
             <input type="email" class="form-control" id="email" name="email">
         </div>
 
-<label for="selectAdmin"></label>
-<select id="selectAdmin" name="adminId"></select>
+        <label for="selectAdmin"></label>
+        <select id="selectAdmin" name="adminId"></select>
         <input type="message" class="form-control" id="message" name="message">
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 <script>
@@ -48,8 +48,8 @@
 </script>
 <script>
     const form = document.getElementById('ticket');
-    form.addEventListener('submit', function (e) {
-
+    form.onsubmit(createTicket());
+    function createTicket() {
         const url = 'http://localhost:8080/api/tickets/create';
         const email = document.getElementById('email').value;
         const adminId = +document.getElementById('adminId').value;
@@ -77,7 +77,8 @@
             .catch((error) => {
                 console.log('Erreur :', error);
             });
-    });
+    }
+
 </script>
 </body>
 </body>

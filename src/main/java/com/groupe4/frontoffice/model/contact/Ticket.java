@@ -1,14 +1,7 @@
 package com.groupe4.frontoffice.model.contact;
 
-import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
-
-@Entity
-@Table(name = "ticket")
 public class Ticket {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String email;
     private String message;
