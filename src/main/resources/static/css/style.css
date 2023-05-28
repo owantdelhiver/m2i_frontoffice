@@ -210,6 +210,19 @@ html{
     border-color: #00174a;
 }
 
+.admin-list {
+    padding-left: 11px;
+}
+
+.select-admin-message {
+    font-size: 14px;
+    color: grey;
+}
+
+.validation-message {
+    color: #188c25;
+    padding-left: 11px;
+}
 
 
 
