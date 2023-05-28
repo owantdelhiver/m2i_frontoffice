@@ -23,6 +23,7 @@
 
         <label for="selectAdmin"></label>
         <select id="selectAdmin" name="adminId"></select>
+
         <input type="message" class="form-control" id="message" name="message">
 
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -48,36 +49,37 @@
 </script>
 <script>
     const form = document.getElementById('ticket');
-    form.onsubmit(createTicket());
-    function createTicket() {
-        const url = 'http://localhost:8080/api/tickets/create';
-        const email = document.getElementById('email').value;
-        const adminId = +document.getElementById('adminId').value;
-        const message = document.getElementById('message').value;
-
-        const data = {
-            email: email,
-            adminId: adminId,
-            message: message
-        };
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then((response) => {
-                if (response.ok) {
-                    console.log('Ticket ok');
-                } else {
-                    console.log('Erreur');
-                }
-            })
-            .catch((error) => {
-                console.log('Erreur :', error);
+    const postValues = async(jsonObject) => {
+        try {
+            const url = 'http://localhost:8080/api/tickets/create';
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify(jsonObject)
             });
+            if (response.ok) {
+                return response;
+            }
+        } catch (error) {
+            if (error) console.log(error);
+        }
     }
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = {
+            "email": formData.get("email"),
+            "adminId": formData.get("adminId"),
+            "message" : formData.get("message")
+        };
+        // const p = document.getElementById('confirmation');
+        postValues(data);
+            // .then(() => p.innerText = "Votre message a été envoyé avec succès.")
+            // .catch(() => p.innerText = "Une erreur s'est produite.");
+        event.target.reset();
+    }
+    form.onsubmit = handleSubmit;
 
 </script>
 </body>
