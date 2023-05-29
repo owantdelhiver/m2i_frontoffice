@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/register")
+@RequestMapping
 public class UserController extends SuperController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class UserController extends SuperController {
     AdressService adressService;
 
 
-    @GetMapping
+    @GetMapping("/register")
     public String registration(
             Model model, User user, Adress adress){
         model.addAttribute("user", user);
@@ -34,7 +34,7 @@ public class UserController extends SuperController {
         return "registration";
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public String saveUser(User user, Adress adress){
         adressService.save(adress);
         user.setAdress(adress);
