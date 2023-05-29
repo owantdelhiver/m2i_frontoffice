@@ -1,6 +1,7 @@
 body {
     /*background-color: #c1f6f7;*/
     background-image: url("../images/background-multi.jpg");
+    background-size: cover;
 }
 
 .card-header{
