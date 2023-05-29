@@ -12,16 +12,23 @@ header {
 }
 
 .card{
-    border-radius: 0;
+    border-radius: 10px;
 }
 
 .btn {
-    border-radius: 0;
+    /*border-radius: 0;*/
 }
 
 .btn-success {
     background-color: #97ff94;
     color:#00174a;
+    border-color: transparent;
+}
+
+.btn-success:hover {
+    background-color: #b0ffad;
+    color:#00174a;
+    border-color: transparent;
 }
 
 .btn-warning {
@@ -29,6 +36,13 @@ header {
     border: #97ff94;
     color:#97ff94;
 }
+
+.btn-warning:hover {
+    background-color: #435074;
+    border-color: transparent;
+    color:white;
+}
+
 .btn-primary {
 background-color: #00174a;
 }
@@ -222,6 +236,20 @@ html{
 .validation-message {
     color: #188c25;
     padding-left: 11px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
+.image-container img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 
