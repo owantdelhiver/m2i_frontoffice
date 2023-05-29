@@ -13,7 +13,8 @@
                 </div>
                 <form id="ticket" action="#" method="post">
                     <div class="form-floating mt-5 mb-5">
-                        <input th:field="*{user.email}" id="email" type="email" name="email" class="form-control" placeholder="Email" required>
+                        <input th:if="${session.email}" th:field="*{user.email}" id="email" type="email" name="email" class="form-control" placeholder="Email" required>
+                        <input th:unless="${session.email}" id="email" type="email" name="email" class="form-control" placeholder="Email" required>
                         <label for="email">Your email</label>
                     </div>
 
