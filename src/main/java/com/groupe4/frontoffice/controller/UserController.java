@@ -1,10 +1,13 @@
 package com.groupe4.frontoffice.controller;
 
+import com.groupe4.frontoffice.dto.AdressDto;
+import com.groupe4.frontoffice.dto.UserDto;
 import com.groupe4.frontoffice.model.user.Adress;
 import com.groupe4.frontoffice.model.user.User;
 import com.groupe4.frontoffice.service.AdressService;
 import com.groupe4.frontoffice.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/register")
-public class UserController {
+public class UserController extends SuperController {
 
     @Autowired
     UserService userService;
@@ -38,6 +41,26 @@ public class UserController {
         userService.registerNewUserAccount(user);
 
         return"redirect:/login";
+    }
+
+    @GetMapping("/edit-profile")
+    public String editProfile(
+            Model model,
+            HttpSession session){
+        User user = super.getUserSession(session);
+        UserDto userDto = userService.convertToUserDto(user);
+        model.addAttribute("user", userDto);
+        model.addAttribute("adress", userDto.getAdress());
+        return "edit-profile";
+    }
+
+    @PostMapping("/edit-profile")
+    public String editUser(UserDto user, AdressDto adress){
+        user.setAdress(adress);
+        User userUpdated = userService.convertToUser(user);
+        adressService.save(userUpdated.getAdress());
+        userService.editUserAccount(userUpdated);
+        return"redirect:/";
     }
 
 }
