@@ -11,7 +11,7 @@
                 <div class="text-center">
                     <h3 class="mb-4">Create Account</h3>
                 </div>
-                <form th:action="@{/users/register}" th:object="${user}" method="post">
+                <form th:action="@{/register}" th:object="${user}" method="post">
                     <div class="form-floating mt-5 mb-5">
                         <input th:field="*{lastname}" id="lastname" type="text" name="lastname" class="form-control" placeholder="Last Name" required>
                         <label for="lastname">Last Name</label>

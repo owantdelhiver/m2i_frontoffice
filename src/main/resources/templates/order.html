@@ -38,7 +38,7 @@
                             <div th:each="orderline : ${orderlines}">
                                 <tr>
                                     <th class="id-column" th:text="${orderline.id}"></th>
-                                    <td><img th:src="@{'images/product/'+${orderline.productDto.id}+'/'+${orderline.productDto.picture_url}}" alt="Logo" style="max-height: 7em; max-width: 100%;"></td>
+                                    <td><img th:src="@{'http://localhost:8080/api/img/product/'+${orderline.productDto.id}}" alt="Logo" style="max-height: 7em; max-width: 100%;"></td>
                                     <td th:text="${orderline.productDto.name}"></td>
                                     <td class="unit-price-column" th:text="${orderline.productDto.price} + '€'"></td>
                                     <td th:text="${orderline.quantity}"></td>

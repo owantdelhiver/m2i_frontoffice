@@ -12,7 +12,7 @@
                 <div class="text-center">
                     <h3 class="mb-4">Account modification</h3>
                 </div>
-                <form th:action="@{/users/edit-profile}" th:object="${user}" method="post">
+                <form th:action="@{/edit-profile}" th:object="${user}" method="post">
                     <div class="form-floating mt-5 mb-5" style="display: none;">
                         <input th:field="*{id}" id="id" type="number" name="id" class="form-control" placeholder="ID" readonly>
                         <label for="id">ID</label>
@@ -26,14 +26,14 @@
                         <label class="form-control-placeholder" for="firstname">First Name</label>
                     </div>
                     <div class="form-floating mt-5 mb-5">
-                        <input th:field="*{email}" id="email" type="email" name ="email" class="form-control" placeholder="Email" required>
+                        <input th:field="*{email}" id="email" type="email" name ="email" class="form-control" placeholder="Email" required readonly>
                         <label class="form-control-placeholder" for="email">Email</label>
                     </div>
                     <div class="form-floating mt-5 mb-5" style="display: none;">
                         <input th:field="*{password}" id="password" type="text" name ="password" class="form-control" placeholder="Password" required>
                         <label class="form-control-placeholder" for="password">Password</label>
                     </div>
-                    <form th:action="@{/users/edit-profile}" th:object="${adress}" method="post">
+                    <form th:action="@{/edit-profile}" th:object="${adress}" method="post">
                         <div class="form-floating mt-5 mb-5" style="display: none;">
                             <input th:field="*{id}" id="adressId" type="number" name="adressId" class="form-control" placeholder="adressId" readonly>
                             <label for="adressId">adressId</label>

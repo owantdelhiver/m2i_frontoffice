@@ -65,6 +65,10 @@ public class UserService {
 
     public User registerNewUserAccount(User user) {
 
+        if(userRepository.findByEmail(user.getEmail()).isPresent()){
+            return null;
+        }
+        else {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         List<Role> roles = new ArrayList<>();
@@ -77,7 +81,7 @@ public class UserService {
         user.setCart(cart);
 
         return userRepository.save(user);
-    }
+    }}
 
     public void editUserAccount(User user) {
 
