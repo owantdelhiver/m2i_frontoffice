@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TicketController extends SuperController {
 
-    @GetMapping(value = "/ticket")
+    @GetMapping(value = {"/contact","/ticket"})
     public String ticket(Model model, Ticket ticket, HttpSession session){
         User user = super.getUserSession(session);
         model.addAttribute("user", user);;

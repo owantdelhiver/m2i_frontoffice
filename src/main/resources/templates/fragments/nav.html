@@ -8,8 +8,9 @@
         <li><a th:href="@{/}" class="nav-link px-2 text-dark">Products</a></li>
         <li><a th:href="@{/cart}" class="nav-link px-2 text-dark">My Cart</a></li>
         <li><a th:href="@{/orders}" class="nav-link px-2 text-dark">My Orders</a></li>
-        <li th:unless="${session.email}"><a th:href="@{/login}" class="nav-link px-2 text-dark">Login</a></li>
         <li th:if="${session.email}"><a th:href="@{/edit-profile}" class="nav-link px-2 text-dark">My Profile</a></li>
+        <li><a th:href="@{/contact}" class="nav-link px-2 text-dark">Contact</a></li>
+        <li th:unless="${session.email}"><a th:href="@{/login}" class="nav-link px-2 text-dark">Login</a></li>
         <li th:if="${session.email}"><a class="nav-link" aria-current="page" href="javascript: logoutForm.submit()">Logout</a></li>
         <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
           <input value="logout"/>
