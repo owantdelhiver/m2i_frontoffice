@@ -1,4 +1,4 @@
-# m2i_backoffice
+# m2i_frontoffice
 
 ## Prérequis
 
